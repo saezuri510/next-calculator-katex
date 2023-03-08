@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import { InlineMath } from "react-katex";
-import { MathKeypad } from "../components/MathKeypad";
+import { MathKeypad } from "../components/templates/MathKeypad";
 import "katex/dist/katex.min.css";
 
 const Home: NextPage = () => {
