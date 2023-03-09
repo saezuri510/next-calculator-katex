@@ -24,7 +24,7 @@ const Home: NextPage = () => {
       <div>
         {Results.map((result, idx) => (
           <div key={idx} className="flex">
-            <InlineMath>{result}</InlineMath>
+            <InlineMath>{String.raw`${result}`}</InlineMath>
           </div>
         ))}
       </div>

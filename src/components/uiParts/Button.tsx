@@ -16,7 +16,7 @@ export const Button = ({
   return (
     <button
       className={classNames(
-        "h-[32px] cursor-pointer rounded border font-medium",
+        "flex h-[32px] cursor-pointer items-center justify-center rounded border font-medium",
         {
           "bg-white": color === "white",
           "bg-gray-300": color === "gray",

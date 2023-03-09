@@ -1,5 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 import { Button } from "../uiParts/Button";
+import { IoArrowRedoSharp, IoSettingsSharp } from "react-icons/io5";
+import { FaEraser } from "react-icons/fa";
+import { TbMathFunction } from "react-icons/tb";
+import { InlineMath } from "react-katex";
 
 type Props = {
   setEquation: Dispatch<SetStateAction<string>>;
@@ -36,7 +40,9 @@ export const MathKeypad = ({ setEquation, SetResults }: Props): JSX.Element => {
       </Button>
       <Button onClick={() => handleSymbolClick("\\div")}>÷</Button>
       <Button onClick={() => handleSymbolClick("i")}>i</Button>
-      <Button onClick={() => handleSymbolClick("\\sqrt{2}")}>√2</Button>
+      <Button onClick={() => handleSymbolClick("\\sqrt{2}")}>
+        <InlineMath>{String.raw`\sqrt{2}`}</InlineMath>
+      </Button>
       <Button color={"gray"} onClick={() => handleNumberClick("4")}>
         4
       </Button>
@@ -47,7 +53,9 @@ export const MathKeypad = ({ setEquation, SetResults }: Props): JSX.Element => {
         6
       </Button>
       <Button onClick={() => handleSymbolClick("\\times")}>x</Button>
-      <Button onClick={() => handleSymbolClick("\\times10^{2}")}>x10^2</Button>
+      <Button onClick={() => handleSymbolClick("\\times10^{2}")}>
+        <InlineMath>{String.raw`\times10^{2}`}</InlineMath>
+      </Button>
       <Button onClick={() => handleSymbolClick("\\frac{1}{2}")}>1/2</Button>
       <Button color={"gray"} onClick={() => handleNumberClick("1")}>
         1
@@ -67,15 +75,21 @@ export const MathKeypad = ({ setEquation, SetResults }: Props): JSX.Element => {
       <Button onClick={() => handleSymbolClick(".")}>.</Button>
       <Button onClick={() => handleSymbolClick("=")}>=</Button>
       <Button onClick={() => handleSymbolClick("+")}>+</Button>
-      <Button>関数</Button>
-      <Button onClick={() => SetResults([])}>clear</Button>
-      <Button>settings</Button>
+      <Button>
+        <TbMathFunction />
+      </Button>
+      <Button onClick={() => SetResults([])}>
+        <FaEraser />
+      </Button>
+      <Button>
+        <IoSettingsSharp />
+      </Button>
       <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>
         DEL
       </Button>
       <Button onClick={() => setEquation("")}>AC</Button>
       <Button color={"blue"} type={"submit"}>
-        計算
+        <IoArrowRedoSharp />
       </Button>
     </div>
   );
