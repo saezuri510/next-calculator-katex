@@ -33,7 +33,7 @@ const Home: NextPage = () => {
         onSubmit={handleSubmit}
       >
         <input
-          className="h-[32px] w-full cursor-pointer rounded border border-red-500 font-medium"
+          className="h-[32px] w-full cursor-pointer rounded border border-red-500 font-roboto-medium font-medium"
           type="text"
           value={equation}
           onChange={handleChange}
