@@ -1,16 +1,16 @@
 import { Dispatch, SetStateAction } from "react";
-import { Button } from "../uiParts/Button";
+import { Button } from "../../uiParts/Button";
 import { IoArrowRedoSharp, IoSettingsSharp } from "react-icons/io5";
 import { FaEraser } from "react-icons/fa";
 import { TbMathFunction } from "react-icons/tb";
 import { InlineMath } from "react-katex";
+import { KeypadProps } from "../../../types/KeypadProps";
 
-type Props = {
-  setEquation: Dispatch<SetStateAction<string>>;
-  SetResults: Dispatch<SetStateAction<string[]>>;
-};
-
-export const MathKeypad = ({ setEquation, SetResults }: Props): JSX.Element => {
+export const MainKeypad = ({
+  setEquation,
+  SetCalculationResults,
+  setCurrentKeypad,
+}: KeypadProps): JSX.Element => {
   const handleNumberClick = (number: string) => {
     const func = (prev: string) => {
       if (prev === "0") {
@@ -75,10 +75,10 @@ export const MathKeypad = ({ setEquation, SetResults }: Props): JSX.Element => {
       <Button onClick={() => handleSymbolClick(".")}>.</Button>
       <Button onClick={() => handleSymbolClick("=")}>=</Button>
       <Button onClick={() => handleSymbolClick("+")}>+</Button>
-      <Button>
+      <Button onClick={() => setCurrentKeypad("func")}>
         <TbMathFunction />
       </Button>
-      <Button onClick={() => SetResults([])}>
+      <Button onClick={() => SetCalculationResults([])}>
         <FaEraser />
       </Button>
       <Button>

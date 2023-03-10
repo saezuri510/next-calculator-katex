@@ -1,12 +1,15 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import { BlockMath, InlineMath } from "react-katex";
-import { MathKeypad } from "../components/templates/MathKeypad";
+import { InlineMath } from "react-katex";
+import { MainKeypad } from "../components/templates/keypads/MainKeypad";
+import type { KeypadCategory } from "../types/KeypadCategory";
 import "katex/dist/katex.min.css";
+import { FuncKeypad } from "../components/templates/keypads/FuncKeypad";
 
-const Home: NextPage = () => {
+const IndexPage: NextPage = () => {
   const [equation, setEquation] = useState<string>("");
-  const [Results, SetResults] = useState<string[]>([]);
+  const [CalculationResults, SetCalculationResults] = useState<string[]>([]);
+  const [currentKeypad, setCurrentKeypad] = useState<KeypadCategory>("main");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEquation(e.target.value);
@@ -15,14 +18,14 @@ const Home: NextPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //式を受け取り計算
-    SetResults((prev) => [...prev, equation]);
+    SetCalculationResults((prev) => [...prev, equation]);
     setEquation("");
   };
 
   return (
     <div>
       <div>
-        {Results.map((result, idx) => (
+        {CalculationResults.map((result, idx) => (
           <div key={idx} className="flex">
             <InlineMath>{String.raw`${result}`}</InlineMath>
           </div>
@@ -41,10 +44,23 @@ const Home: NextPage = () => {
         <div className="h-[24px] w-full rounded border  border-green-500 bg-white">
           <InlineMath>{String.raw`${equation}`}</InlineMath>
         </div>
-        <MathKeypad setEquation={setEquation} SetResults={SetResults} />
+        {currentKeypad === "main" && (
+          <MainKeypad
+            setEquation={setEquation}
+            SetCalculationResults={SetCalculationResults}
+            setCurrentKeypad={setCurrentKeypad}
+          />
+        )}
+        {currentKeypad === "func" && (
+          <FuncKeypad
+            setEquation={setEquation}
+            SetCalculationResults={SetCalculationResults}
+            setCurrentKeypad={setCurrentKeypad}
+          />
+        )}
       </form>
     </div>
   );
 };
 
-export default Home;
+export default IndexPage;
