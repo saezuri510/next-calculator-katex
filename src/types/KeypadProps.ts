@@ -5,4 +5,5 @@ export type KeypadProps = {
   setEquation: Dispatch<SetStateAction<string>>;
   SetCalculationResults: Dispatch<SetStateAction<string[]>>;
   setCurrentKeypad: Dispatch<SetStateAction<KeypadCategory>>;
+  open: () => void;
 };

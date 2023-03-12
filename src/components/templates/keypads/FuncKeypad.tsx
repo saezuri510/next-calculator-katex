@@ -1,14 +1,20 @@
 import { Button } from "../../uiParts/Button";
 import type { KeypadProps } from "../../../types/KeypadProps";
+import { memo } from "react";
 
-export const FuncKeypad = ({
-  setEquation,
-  SetCalculationResults,
-  setCurrentKeypad,
-}: KeypadProps): JSX.Element => {
-  return (
-    <div>
-      <Button>a</Button>
-    </div>
-  );
-};
+export const FuncKeypad = memo(
+  ({
+    setEquation,
+    SetCalculationResults,
+    setCurrentKeypad,
+    open,
+  }: KeypadProps): JSX.Element => {
+    return (
+      <div>
+        <Button>a</Button>
+      </div>
+    );
+  }
+);
+
+FuncKeypad.displayName = "FuncKeypad";
