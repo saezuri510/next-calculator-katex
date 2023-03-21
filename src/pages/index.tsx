@@ -5,24 +5,22 @@ import { MainKeypad } from "../components/templates/keypads/MainKeypad";
 import type { KeypadCategory } from "../types/KeypadCategory";
 import "katex/dist/katex.min.css";
 import { FuncKeypad } from "../components/templates/keypads/FuncKeypad";
-import { useModalControll } from "../hooks/useModalControll";
+import { useModalController } from "../hooks/useModalController";
 import { SettingsModal } from "../components/templates/modals/SettingsModal";
+import { useEquation } from "../hooks/useEquation";
 
 const IndexPage: NextPage = () => {
-  const [equation, setEquation] = useState<string>("");
   const [CalculationResults, SetCalculationResults] = useState<string[]>([]);
   const [currentKeypad, setCurrentKeypad] = useState<KeypadCategory>("main");
-  const modal = useModalControll(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEquation(e.target.value);
-  };
+  const [equation, setEquation, equationController] = useEquation("");
+  const modal = useModalController(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //式を受け取り計算
     SetCalculationResults((prev) => [...prev, equation]);
-    setEquation("");
+    equationController.reset();
   };
 
   return (
@@ -43,13 +41,14 @@ const IndexPage: NextPage = () => {
             className="h-[32px] w-full cursor-pointer rounded border border-red-500 font-roboto-medium font-medium"
             type="text"
             value={equation}
-            onChange={handleChange}
+            onChange={(e) => setEquation(e.target.value)}
           />
           <div className="h-[24px] w-full rounded border  border-green-500 bg-white">
             <InlineMath>{String.raw`${equation}`}</InlineMath>
           </div>
           {currentKeypad === "main" && (
             <MainKeypad
+              {...equationController}
               setEquation={setEquation}
               SetCalculationResults={SetCalculationResults}
               setCurrentKeypad={setCurrentKeypad}
@@ -58,7 +57,7 @@ const IndexPage: NextPage = () => {
           )}
           {currentKeypad === "func" && (
             <FuncKeypad
-              setEquation={setEquation}
+              {...equationController}
               SetCalculationResults={SetCalculationResults}
               setCurrentKeypad={setCurrentKeypad}
               open={modal.open}

@@ -4,79 +4,70 @@ import { FaEraser } from "react-icons/fa";
 import { TbMathFunction } from "react-icons/tb";
 import { InlineMath } from "react-katex";
 import { KeypadProps } from "../../../types/KeypadProps";
-import { memo } from "react";
+import { Dispatch, memo, SetStateAction } from "react";
 
 export const MainKeypad = memo(
   ({
+    entryNumber,
+    entrySymbol,
+    reset,
     setEquation,
     SetCalculationResults,
     setCurrentKeypad,
     open,
-  }: KeypadProps): JSX.Element => {
-    const handleNumberClick = (number: string) => {
-      const func = (prev: string) => {
-        if (prev === "0") {
-          return number;
-        }
-        return prev + number;
-      };
-      setEquation((prev) => func(prev));
-    };
-
-    const handleSymbolClick = (symbol: string) => {
-      setEquation((prev) => prev + symbol);
-    };
-
+  }: KeypadProps & {
+    setEquation: Dispatch<SetStateAction<string>>;
+  }): JSX.Element => {
     return (
       <div className="grid grid-cols-6 grid-rows-5 ">
-        <Button onClick={() => handleSymbolClick("x")}>x</Button>
-        <Button onClick={() => handleSymbolClick("y")}>y</Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("7")}>
+        <Button onClick={() => entrySymbol("x")}>x</Button>
+        <Button onClick={() => entrySymbol("y")}>y</Button>
+        <Button color={"gray"} onClick={() => entryNumber("7")}>
           7
         </Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("8")}>
+        <Button color={"gray"} onClick={() => entryNumber("8")}>
           8
         </Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("9")}>
+        <Button color={"gray"} onClick={() => entryNumber("9")}>
           9
         </Button>
-        <Button onClick={() => handleSymbolClick("\\div")}>÷</Button>
-        <Button onClick={() => handleSymbolClick("i")}>i</Button>
-        <Button onClick={() => handleSymbolClick("\\sqrt{2}")}>
-          <InlineMath>{String.raw`\sqrt{2}`}</InlineMath>
+        <Button onClick={() => entrySymbol("\\div")}>÷</Button>
+        <Button onClick={() => entrySymbol("i")}>i</Button>
+        <Button onClick={() => entrySymbol("\\sqrt{2}")}>
+          <InlineMath>{"\\sqrt{2}"}</InlineMath>
         </Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("4")}>
+        <Button color={"gray"} onClick={() => entryNumber("4")}>
           4
         </Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("5")}>
+        <Button color={"gray"} onClick={() => entryNumber("5")}>
           5
         </Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("6")}>
+        <Button color={"gray"} onClick={() => entryNumber("6")}>
           6
         </Button>
-        <Button onClick={() => handleSymbolClick("\\times")}>x</Button>
-        <Button onClick={() => handleSymbolClick("\\times10^{2}")}>
-          <InlineMath>{String.raw`\times10^{2}`}</InlineMath>
+        <Button onClick={() => entrySymbol("\\times")}>x</Button>
+        <Button onClick={() => entrySymbol("\\times10^{2}")}>
+          <InlineMath>{"\\times10^{2}"}</InlineMath>
         </Button>
-        <Button onClick={() => handleSymbolClick("\\frac{1}{2}")}>1/2</Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("1")}>
+        <Button onClick={() => entrySymbol("\\frac{1}{2}")}>1/2</Button>
+        <Button color={"gray"} onClick={() => entryNumber("1")}>
           1
         </Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("2")}>
+        <Button color={"gray"} onClick={() => entryNumber("2")}>
           2
         </Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("3")}>
+        <Button color={"gray"} onClick={() => entryNumber("3")}>
           3
         </Button>
-        <Button onClick={() => handleSymbolClick("-")}>-</Button>
-        <Button onClick={() => handleSymbolClick("(")}>(</Button>
-        <Button onClick={() => handleSymbolClick(")")}>)</Button>
-        <Button color={"gray"} onClick={() => handleNumberClick("0")}>
+        <Button onClick={() => entrySymbol("-")}>-</Button>
+        <Button onClick={() => entrySymbol("(")}>(</Button>
+        <Button onClick={() => entrySymbol(")")}>)</Button>
+        <Button color={"gray"} onClick={() => entryNumber("0")}>
           0
         </Button>
-        <Button onClick={() => handleSymbolClick(".")}>.</Button>
-        <Button onClick={() => handleSymbolClick("=")}>=</Button>
-        <Button onClick={() => handleSymbolClick("+")}>+</Button>
+        <Button onClick={() => entrySymbol(".")}>.</Button>
+        <Button onClick={() => entrySymbol("=")}>=</Button>
+        <Button onClick={() => entrySymbol("+")}>+</Button>
         <Button onClick={() => setCurrentKeypad("func")}>
           <TbMathFunction />
         </Button>
@@ -89,7 +80,7 @@ export const MainKeypad = memo(
         <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>
           DEL
         </Button>
-        <Button onClick={() => setEquation("")}>AC</Button>
+        <Button onClick={reset}>AC</Button>
         <Button color={"blue"} type={"submit"}>
           <IoArrowRedoSharp />
         </Button>
