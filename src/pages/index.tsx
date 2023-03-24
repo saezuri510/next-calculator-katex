@@ -8,6 +8,10 @@ import { FuncKeypad } from "../components/templates/keypads/FuncKeypad";
 import { useModalController } from "../hooks/useModalController";
 import { SettingsModal } from "../components/templates/modals/SettingsModal";
 import { useEquation } from "../hooks/useEquation";
+import { Button } from "../components/uiParts/Button";
+import { IoArrowRedoSharp, IoSettingsSharp } from "react-icons/io5";
+import { FaEraser } from "react-icons/fa";
+import { TbMathFunction } from "react-icons/tb";
 
 const IndexPage: NextPage = () => {
   const [calculationResults, setCalculationResults] = useState<string[]>([]);
@@ -46,23 +50,30 @@ const IndexPage: NextPage = () => {
           <div className="h-[24px] w-full rounded border  border-green-500 bg-white">
             <InlineMath>{String.raw`${equation}`}</InlineMath>
           </div>
-          {currentKeypad === "main" && (
-            <MainKeypad
-              {...equationControllers}
-              setEquation={setEquation}
-              setCalculationResults={setCalculationResults}
-              setCurrentKeypad={setCurrentKeypad}
-              open={modal.open}
-            />
-          )}
-          {currentKeypad === "func" && (
-            <FuncKeypad
-              {...equationControllers}
-              setCalculationResults={setCalculationResults}
-              setCurrentKeypad={setCurrentKeypad}
-              open={modal.open}
-            />
-          )}
+          <div className="grid grid-cols-6 grid-rows-5">
+            {currentKeypad === "main" && (
+              <MainKeypad {...equationControllers} />
+            )}
+            {currentKeypad === "func" && (
+              <FuncKeypad {...equationControllers} />
+            )}
+            <Button onClick={() => setCurrentKeypad("func")}>
+              <TbMathFunction />
+            </Button>
+            <Button onClick={() => setCalculationResults([])}>
+              <FaEraser />
+            </Button>
+            <Button onClick={() => open()}>
+              <IoSettingsSharp />
+            </Button>
+            <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>
+              DEL
+            </Button>
+            <Button onClick={equationControllers.reset}>AC</Button>
+            <Button color={"blue"} type={"submit"}>
+              <IoArrowRedoSharp />
+            </Button>
+          </div>
         </form>
       </div>
       <SettingsModal {...modal} />

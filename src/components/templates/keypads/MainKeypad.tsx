@@ -1,25 +1,12 @@
 import { Button } from "../../uiParts/Button";
-import { IoArrowRedoSharp, IoSettingsSharp } from "react-icons/io5";
-import { FaEraser } from "react-icons/fa";
-import { TbMathFunction } from "react-icons/tb";
 import { InlineMath } from "react-katex";
 import { KeypadProps } from "../../../types/KeypadProps";
-import { Dispatch, memo, SetStateAction } from "react";
+import { memo } from "react";
 
 export const MainKeypad = memo(
-  ({
-    entryNumber,
-    entrySymbol,
-    reset,
-    setEquation,
-    setCalculationResults,
-    setCurrentKeypad,
-    open,
-  }: KeypadProps & {
-    setEquation: Dispatch<SetStateAction<string>>;
-  }): JSX.Element => {
+  ({ entryNumber, entrySymbol }: KeypadProps): JSX.Element => {
     return (
-      <div className="grid grid-cols-6 grid-rows-5 ">
+      <>
         <Button onClick={() => entrySymbol("x")}>x</Button>
         <Button onClick={() => entrySymbol("y")}>y</Button>
         <Button color={"gray"} onClick={() => entryNumber("7")}>
@@ -68,23 +55,7 @@ export const MainKeypad = memo(
         <Button onClick={() => entrySymbol(".")}>.</Button>
         <Button onClick={() => entrySymbol("=")}>=</Button>
         <Button onClick={() => entrySymbol("+")}>+</Button>
-        <Button onClick={() => setCurrentKeypad("func")}>
-          <TbMathFunction />
-        </Button>
-        <Button onClick={() => setCalculationResults([])}>
-          <FaEraser />
-        </Button>
-        <Button onClick={() => open()}>
-          <IoSettingsSharp />
-        </Button>
-        <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>
-          DEL
-        </Button>
-        <Button onClick={reset}>AC</Button>
-        <Button color={"blue"} type={"submit"}>
-          <IoArrowRedoSharp />
-        </Button>
-      </div>
+      </>
     );
   }
 );
