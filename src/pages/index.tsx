@@ -47,7 +47,7 @@ const IndexPage: NextPage = () => {
             value={equation}
             onChange={(e) => setEquation(e.target.value)}
           />
-          <div className="h-[24px] w-full rounded border  border-green-500 bg-white">
+          <div className="h-[64px] w-full rounded border  border-green-500 bg-white">
             <InlineMath>{String.raw`${equation}`}</InlineMath>
           </div>
           <div className="flex">
