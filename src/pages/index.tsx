@@ -10,7 +10,7 @@ import { SettingsModal } from "../components/templates/modals/SettingsModal";
 import { useEquation } from "../hooks/useEquation";
 
 const IndexPage: NextPage = () => {
-  const [CalculationResults, SetCalculationResults] = useState<string[]>([]);
+  const [calculationResults, setCalculationResults] = useState<string[]>([]);
   const [currentKeypad, setCurrentKeypad] = useState<KeypadCategory>("main");
 
   const [equation, setEquation, equationController] = useEquation("");
@@ -19,7 +19,7 @@ const IndexPage: NextPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //式を受け取り計算
-    SetCalculationResults((prev) => [...prev, equation]);
+    setCalculationResults((prev) => [...prev, equation]);
     equationController.reset();
   };
 
@@ -27,7 +27,7 @@ const IndexPage: NextPage = () => {
     <div>
       <div>
         <div>
-          {CalculationResults.map((result, idx) => (
+          {calculationResults.map((result, idx) => (
             <div key={idx} className="flex">
               <InlineMath>{String.raw`${result}`}</InlineMath>
             </div>
@@ -50,7 +50,7 @@ const IndexPage: NextPage = () => {
             <MainKeypad
               {...equationController}
               setEquation={setEquation}
-              SetCalculationResults={SetCalculationResults}
+              setCalculationResults={setCalculationResults}
               setCurrentKeypad={setCurrentKeypad}
               open={modal.open}
             />
@@ -58,7 +58,7 @@ const IndexPage: NextPage = () => {
           {currentKeypad === "func" && (
             <FuncKeypad
               {...equationController}
-              SetCalculationResults={SetCalculationResults}
+              setCalculationResults={setCalculationResults}
               setCurrentKeypad={setCurrentKeypad}
               open={modal.open}
             />

@@ -12,7 +12,7 @@ export const MainKeypad = memo(
     entrySymbol,
     reset,
     setEquation,
-    SetCalculationResults,
+    setCalculationResults,
     setCurrentKeypad,
     open,
   }: KeypadProps & {
@@ -71,7 +71,7 @@ export const MainKeypad = memo(
         <Button onClick={() => setCurrentKeypad("func")}>
           <TbMathFunction />
         </Button>
-        <Button onClick={() => SetCalculationResults([])}>
+        <Button onClick={() => setCalculationResults([])}>
           <FaEraser />
         </Button>
         <Button onClick={() => open()}>

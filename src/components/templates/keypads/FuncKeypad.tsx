@@ -5,7 +5,7 @@ import { InlineMath } from "react-katex";
 
 export const FuncKeypad = memo(
   ({
-    SetCalculationResults,
+    setCalculationResults,
     setCurrentKeypad,
     open,
     entrySymbol,
