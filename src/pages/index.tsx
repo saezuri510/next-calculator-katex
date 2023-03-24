@@ -67,7 +67,7 @@ const IndexPage: NextPage = () => {
             <Button onClick={() => setCalculationResults([])}>
               <FaEraser />
             </Button>
-            <Button onClick={() => open()}>
+            <Button onClick={() => modal.open()}>
               <IoSettingsSharp />
             </Button>
             <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>
@@ -80,7 +80,7 @@ const IndexPage: NextPage = () => {
           </div>
         </form>
       </div>
-      <SettingsModal {...modal} />
+      <SettingsModal isOpen={modal.isOpen} close={modal.close} />
     </div>
   );
 };
