@@ -8,21 +8,16 @@ type Props = Omit<ComponentProps<"button">, "className" | "type"> & {
 };
 
 export const Button = memo(
-  ({
-    children,
-    color = "white",
-    type = "button",
-    ...rest
-  }: Props): JSX.Element => {
+  ({ children, color = "white", type = "button", ...rest }: Props): JSX.Element => {
     return (
       <button
         className={classNames(
           "flex h-[32px] cursor-pointer items-center justify-center rounded border font-medium",
           {
-            "bg-white": color === "white",
-            "bg-gray-300": color === "gray",
             "bg-blue-500": color === "blue",
-          }
+            "bg-gray-300": color === "gray",
+            "bg-white": color === "white",
+          },
         )}
         type={type}
         {...rest}
@@ -30,7 +25,7 @@ export const Button = memo(
         {children}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

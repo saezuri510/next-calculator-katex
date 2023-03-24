@@ -23,7 +23,7 @@ export const useEquation = (initialValue: string) => {
 
   return {
     equation,
-    setEquation,
     equationControllers: { entryNumber, entrySymbol, reset },
+    setEquation,
   } as const;
 };

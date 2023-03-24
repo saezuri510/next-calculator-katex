@@ -1,3 +1,30 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "prettier",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:sort/recommended"
+  ],
+  "plugins": ["import", "sort", "@typescript-eslint"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "reservedFirst": true,
+        "shorthandFirst": true
+      }
+    ],
+    "sort/imports": ["off"]
+  }
 }

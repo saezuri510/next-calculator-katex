@@ -1,16 +1,17 @@
-import { Button } from "../../uiParts/Button";
-import { InlineMath } from "react-katex";
-import { KeypadProps } from "../../../types/KeypadProps";
-import { memo } from "react";
 import classNames from "classnames";
+import { memo } from "react";
+import { InlineMath } from "react-katex";
+
+import { KeypadProps } from "../../../types/KeypadProps";
+import { Button } from "../../uiParts/Button";
 
 export const MainKeypad = memo(
-  ({ entryNumber, entrySymbol, currentKeypad }: KeypadProps): JSX.Element => {
+  ({ currentKeypad, entryNumber, entrySymbol }: KeypadProps): JSX.Element => {
     return (
       <div
         className={classNames(
           "w-full grid-cols-6 grid-rows-4 sm:grid sm:w-2/4",
-          currentKeypad === "main" ? "grid" : "hidden"
+          currentKeypad === "main" ? "grid" : "hidden",
         )}
       >
         <Button onClick={() => entrySymbol("x")}>x</Button>
@@ -63,7 +64,7 @@ export const MainKeypad = memo(
         <Button onClick={() => entrySymbol("+")}>+</Button>
       </div>
     );
-  }
+  },
 );
 
 MainKeypad.displayName = "MainKeypad";

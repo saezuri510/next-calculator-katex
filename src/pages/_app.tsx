@@ -2,13 +2,13 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Roboto } from "next/font/google";
 
-const ROBOTO_MEDIUM = Roboto({ weight: "500", subsets: ["cyrillic"] });
+const ROBOTO_MEDIUM = Roboto({ subsets: ["cyrillic"], weight: "500" });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Component {...pageProps} />
-      <style jsx global>
+      <style global jsx>
         {`
           :root {
             --font-roboto-medium: ${ROBOTO_MEDIUM.style.fontFamily};

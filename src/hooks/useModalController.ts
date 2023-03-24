@@ -12,8 +12,8 @@ export const useModalController = (initialValue: boolean) => {
   }, []);
 
   return {
+    close,
     isOpen,
     open,
-    close,
   } as const;
 };

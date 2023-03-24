@@ -1,24 +1,24 @@
-import Modal from "react-modal";
 import { memo } from "react";
+import Modal from "react-modal";
 
 type Props = {
   isOpen: boolean;
   close: () => void;
 };
 
-export const SettingsModal = memo(({ isOpen, close }: Props): JSX.Element => {
+export const SettingsModal = memo(({ close, isOpen }: Props): JSX.Element => {
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={close}
       style={{
         overlay: {
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
           backgroundColor: "rgba(0, 0, 0, .2)",
+          bottom: 0,
+          left: 0,
+          position: "fixed",
+          right: 0,
+          top: 0,
         },
       }}
     ></Modal>
