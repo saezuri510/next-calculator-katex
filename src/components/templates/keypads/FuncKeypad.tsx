@@ -3,6 +3,7 @@ import type { KeypadProps } from "../../../types/KeypadProps";
 import { memo } from "react";
 import { InlineMath } from "react-katex";
 import classNames from "classnames";
+import Image from "next/image";
 
 export const FuncKeypad = memo(
   ({ entrySymbol, currentKeypad }: KeypadProps): JSX.Element => {
@@ -35,10 +36,20 @@ export const FuncKeypad = memo(
         </Button>
         <Button onClick={() => entrySymbol("⌊⌋")}>{"⌊⌋"}</Button>
         <Button onClick={() => entrySymbol("\\displaystyle\\sum_{i=1}^n{3}")}>
-          <InlineMath>{"\\displaystyle\\sum_{i=1}^n{3}"}</InlineMath>
+          <Image
+            src="/svgDrawio/sigma.drawio.svg"
+            alt="sigma"
+            width={80}
+            height={60}
+          />
         </Button>
         <Button onClick={() => entrySymbol("\\displaystyle\\prod_{i=1}^n{3}")}>
-          <InlineMath>{"\\displaystyle\\prod_{i=1}^n{3}"}</InlineMath>
+          <Image
+            src="/svgDrawio/product.drawio.svg"
+            alt="product"
+            width={80}
+            height={60}
+          />
         </Button>
         <Button onClick={() => entrySymbol("\\intop{d}(3)")}>
           <InlineMath>{"\\intop{d}(3)"}</InlineMath>
