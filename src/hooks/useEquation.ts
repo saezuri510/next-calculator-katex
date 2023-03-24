@@ -21,5 +21,9 @@ export const useEquation = (initialValue: string) => {
     setEquation("");
   }, []);
 
-  return [equation, setEquation, { entryNumber, entrySymbol, reset }] as const;
+  return {
+    equation,
+    setEquation,
+    equationControllers: { entryNumber, entrySymbol, reset },
+  } as const;
 };

@@ -13,14 +13,14 @@ const IndexPage: NextPage = () => {
   const [calculationResults, setCalculationResults] = useState<string[]>([]);
   const [currentKeypad, setCurrentKeypad] = useState<KeypadCategory>("main");
 
-  const [equation, setEquation, equationController] = useEquation("");
+  const { equation, setEquation, equationControllers } = useEquation("");
   const modal = useModalController(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //式を受け取り計算
     setCalculationResults((prev) => [...prev, equation]);
-    equationController.reset();
+    equationControllers.reset();
   };
 
   return (
@@ -48,7 +48,7 @@ const IndexPage: NextPage = () => {
           </div>
           {currentKeypad === "main" && (
             <MainKeypad
-              {...equationController}
+              {...equationControllers}
               setEquation={setEquation}
               setCalculationResults={setCalculationResults}
               setCurrentKeypad={setCurrentKeypad}
@@ -57,7 +57,7 @@ const IndexPage: NextPage = () => {
           )}
           {currentKeypad === "func" && (
             <FuncKeypad
-              {...equationController}
+              {...equationControllers}
               setCalculationResults={setCalculationResults}
               setCurrentKeypad={setCurrentKeypad}
               open={modal.open}
