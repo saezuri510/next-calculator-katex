@@ -6,7 +6,7 @@ import { memo } from "react";
 export const MainKeypad = memo(
   ({ entryNumber, entrySymbol }: KeypadProps): JSX.Element => {
     return (
-      <>
+      <div className="grid w-2/4 grid-cols-6 grid-rows-4">
         <Button onClick={() => entrySymbol("x")}>x</Button>
         <Button onClick={() => entrySymbol("y")}>y</Button>
         <Button color={"gray"} onClick={() => entryNumber("7")}>
@@ -55,7 +55,7 @@ export const MainKeypad = memo(
         <Button onClick={() => entrySymbol(".")}>.</Button>
         <Button onClick={() => entrySymbol("=")}>=</Button>
         <Button onClick={() => entrySymbol("+")}>+</Button>
-      </>
+      </div>
     );
   }
 );

@@ -5,7 +5,7 @@ import { InlineMath } from "react-katex";
 
 export const FuncKeypad = memo(({ entrySymbol }: KeypadProps): JSX.Element => {
   return (
-    <>
+    <div className="grid w-2/4 grid-cols-6 grid-rows-4">
       <Button onClick={() => entrySymbol("<")}>{"<"}</Button>
       <Button onClick={() => entrySymbol("\\leqq")}>
         <InlineMath>{"\\leqq"}</InlineMath>
@@ -70,7 +70,7 @@ export const FuncKeypad = memo(({ entrySymbol }: KeypadProps): JSX.Element => {
       <Button onClick={() => entrySymbol("\\equiv")}>
         <InlineMath>{"\\equiv"}</InlineMath>
       </Button>
-    </>
+    </div>
   );
 });
 

@@ -50,13 +50,11 @@ const IndexPage: NextPage = () => {
           <div className="h-[24px] w-full rounded border  border-green-500 bg-white">
             <InlineMath>{String.raw`${equation}`}</InlineMath>
           </div>
-          <div className="grid grid-cols-6 grid-rows-5">
-            {currentKeypad === "main" && (
-              <MainKeypad {...equationControllers} />
-            )}
-            {currentKeypad === "func" && (
-              <FuncKeypad {...equationControllers} />
-            )}
+          <div className="flex">
+            <FuncKeypad {...equationControllers} />
+            <MainKeypad {...equationControllers} />
+          </div>
+          <div className="grid grid-cols-6 grid-rows-1">
             <Button onClick={() => setCurrentKeypad("func")}>
               <TbMathFunction />
             </Button>
