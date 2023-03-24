@@ -51,8 +51,14 @@ const IndexPage: NextPage = () => {
             <InlineMath>{String.raw`${equation}`}</InlineMath>
           </div>
           <div className="flex">
-            <FuncKeypad {...equationControllers} />
-            <MainKeypad {...equationControllers} />
+            <FuncKeypad
+              {...equationControllers}
+              currentKeypad={currentKeypad}
+            />
+            <MainKeypad
+              {...equationControllers}
+              currentKeypad={currentKeypad}
+            />
           </div>
           <div className="grid grid-cols-6 grid-rows-1">
             <Button onClick={() => setCurrentKeypad("func")}>
