@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "npm-run-all -s format:*",
-    "format:prettier": "prettier --write \"./**/*.{ts,tsx,js,jsx,json}\"",
+    "format:prettier": "prettier --write './**/*.{ts,tsx,js,jsx,json}'",
     "format:eslint": "eslint ./ --fix --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
