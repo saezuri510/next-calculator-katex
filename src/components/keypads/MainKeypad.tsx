@@ -2,8 +2,8 @@ import classNames from "classnames";
 import { memo } from "react";
 import { InlineMath } from "react-katex";
 
-import { KeypadProps } from "../../../types/KeypadProps";
-import { Button } from "../../uiParts/Button";
+import { KeypadProps } from "../../types/KeypadProps";
+import { Button } from "../ui/Button";
 
 export const MainKeypad = memo(
   ({ currentKeypad, entryNumber, entrySymbol }: KeypadProps): JSX.Element => {

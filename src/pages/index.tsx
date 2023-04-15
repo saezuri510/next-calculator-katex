@@ -5,11 +5,11 @@ import { IoArrowRedoSharp } from "react-icons/io5";
 import { TbMathFunction } from "react-icons/tb";
 import { InlineMath } from "react-katex";
 
-import { FuncKeypad } from "../components/templates/keypads/FuncKeypad";
-import { MainKeypad } from "../components/templates/keypads/MainKeypad";
+import { FuncKeypad } from "../components/keypads/FuncKeypad";
+import { MainKeypad } from "../components/keypads/MainKeypad";
 import "katex/dist/katex.min.css";
-import { SettingsModal } from "../components/templates/modals/SettingsModal";
-import { Button } from "../components/uiParts/Button";
+import { SettingsModal } from "../components/modals/SettingsModal";
+import { Button } from "../components/ui/Button";
 import { useEquation } from "../hooks/useEquation";
 import type { KeypadCategory } from "../types/KeypadCategory";
 

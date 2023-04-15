@@ -3,8 +3,8 @@ import { Dispatch, memo, SetStateAction } from "react";
 import { ImCross } from "react-icons/im";
 import { IoSettingsSharp } from "react-icons/io5";
 
-import { Button } from "../../uiParts/Button";
-import { LinkButton } from "../../uiParts/LinkButton";
+import { Button } from "../ui/Button";
+import { LinkButton } from "../ui/LinkButton";
 
 type Props = {
   setIsKeypadActive: Dispatch<SetStateAction<boolean>>;
