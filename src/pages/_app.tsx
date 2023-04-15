@@ -4,7 +4,7 @@ import { Roboto } from "next/font/google";
 
 const ROBOTO_MEDIUM = Roboto({ subsets: ["cyrillic"], weight: "500" });
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <div>
       <Component {...pageProps} />
@@ -17,6 +17,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </style>
     </div>
   );
-}
+};
 
 export default MyApp;
