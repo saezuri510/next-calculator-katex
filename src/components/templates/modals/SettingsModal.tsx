@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, memo, SetStateAction } from "react";
 import { ImCross } from "react-icons/im";
 import { IoSettingsSharp } from "react-icons/io5";
 
@@ -10,7 +10,7 @@ type Props = {
   setIsKeypadActive: Dispatch<SetStateAction<boolean>>;
 };
 
-export const SettingsModal = ({ setIsKeypadActive }: Props): JSX.Element => {
+export const SettingsModal = memo(({ setIsKeypadActive }: Props): JSX.Element => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -43,4 +43,6 @@ export const SettingsModal = ({ setIsKeypadActive }: Props): JSX.Element => {
       </Dialog.Portal>
     </Dialog.Root>
   );
-};
+});
+
+SettingsModal.displayName = "SettingsModal";

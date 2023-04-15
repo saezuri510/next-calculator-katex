@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ComponentProps, memo, ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 
 type Props = Omit<ComponentProps<"button">, "className" | "type"> & {
   children: ReactNode;
@@ -8,26 +8,28 @@ type Props = Omit<ComponentProps<"button">, "className" | "type"> & {
   size?: "smallBox";
 };
 
-export const Button = memo(
-  ({ children, color = "white", size, type = "button", ...rest }: Props): JSX.Element => {
-    return (
-      <button
-        className={classNames(
-          "flex h-[32px] cursor-pointer items-center justify-center rounded border font-medium",
-          {
-            "bg-blue-500": color === "blue",
-            "bg-gray-300": color === "gray",
-            "bg-white": color === "white",
-            "h-[32px] w-[32px]": size === "smallBox",
-          },
-        )}
-        type={type}
-        {...rest}
-      >
-        {children}
-      </button>
-    );
-  },
-);
-
-Button.displayName = "Button";
+export const Button = ({
+  children,
+  color = "white",
+  size,
+  type = "button",
+  ...rest
+}: Props): JSX.Element => {
+  return (
+    <button
+      className={classNames(
+        "flex h-[32px] cursor-pointer items-center justify-center rounded border font-medium",
+        {
+          "bg-blue-500": color === "blue",
+          "bg-gray-300": color === "gray",
+          "bg-white": color === "white",
+          "h-[32px] w-[32px]": size === "smallBox",
+        },
+      )}
+      type={type}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+};
