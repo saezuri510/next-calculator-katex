@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import { FaEraser } from "react-icons/fa";
-import { IoArrowRedoSharp, IoSettingsSharp } from "react-icons/io5";
+import { IoArrowRedoSharp } from "react-icons/io5";
 import { TbMathFunction } from "react-icons/tb";
 import { InlineMath } from "react-katex";
 
@@ -11,7 +11,6 @@ import "katex/dist/katex.min.css";
 import { SettingsModal } from "../components/templates/modals/SettingsModal";
 import { Button } from "../components/uiParts/Button";
 import { useEquation } from "../hooks/useEquation";
-import { useModalController } from "../hooks/useModalController";
 import type { KeypadCategory } from "../types/KeypadCategory";
 
 const IndexPage: NextPage = () => {
@@ -19,7 +18,6 @@ const IndexPage: NextPage = () => {
   const [currentKeypad, setCurrentKeypad] = useState<KeypadCategory>("main");
 
   const { equation, equationControllers, setEquation } = useEquation("");
-  const modal = useModalController(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -59,9 +57,7 @@ const IndexPage: NextPage = () => {
             <Button onClick={() => setCalculationResults([])}>
               <FaEraser />
             </Button>
-            <Button onClick={() => modal.open()}>
-              <IoSettingsSharp />
-            </Button>
+            <SettingsModal />
             <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>DEL</Button>
             <Button onClick={equationControllers.reset}>AC</Button>
             <Button color={"blue"} type={"submit"}>
@@ -70,7 +66,6 @@ const IndexPage: NextPage = () => {
           </div>
         </form>
       </div>
-      <SettingsModal close={modal.close} isOpen={modal.isOpen} />
     </div>
   );
 };
