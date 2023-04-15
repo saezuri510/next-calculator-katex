@@ -4,17 +4,11 @@ export const useEquation = (initialValue: string) => {
   const [equation, setEquation] = useState<string>(initialValue);
 
   const entryNumber = useCallback((number: string) => {
-    const func = (prev: string) => {
-      if (prev === "0") {
-        return number;
-      }
-      return prev + number;
-    };
-    setEquation((prev) => func(prev));
+    setEquation((prev) => (prev === "0" ? number : `${prev}${number}`));
   }, []);
 
   const entrySymbol = useCallback((symbol: string) => {
-    setEquation((prev) => prev + symbol);
+    setEquation((prev) => `${prev}${symbol}`);
   }, []);
 
   const reset = useCallback(() => {
