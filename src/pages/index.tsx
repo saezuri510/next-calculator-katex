@@ -16,6 +16,7 @@ import type { KeypadCategory } from "../types/KeypadCategory";
 const IndexPage: NextPage = () => {
   const [calculationResults, setCalculationResults] = useState<string[]>([]);
   const [currentKeypad, setCurrentKeypad] = useState<KeypadCategory>("main");
+  const [isKeypadActive, setIsKeypadActive] = useState<boolean>(true);
 
   const { equation, equationControllers, setEquation } = useEquation("");
 
@@ -36,35 +37,37 @@ const IndexPage: NextPage = () => {
             </div>
           ))}
         </div>
-        <form className="fixed bottom-0 w-full bg-slate-300" onSubmit={handleSubmit}>
-          <input
-            className="h-[32px] w-full cursor-pointer rounded border border-red-500 font-roboto-medium font-medium"
-            onChange={(e) => setEquation(e.target.value)}
-            type="text"
-            value={equation}
-          />
-          <div className="h-[64px] w-full rounded border  border-green-500 bg-white">
-            <InlineMath>{String.raw`${equation}`}</InlineMath>
-          </div>
-          <div className="flex">
-            <FuncKeypad {...equationControllers} currentKeypad={currentKeypad} />
-            <MainKeypad {...equationControllers} currentKeypad={currentKeypad} />
-          </div>
-          <div className="grid grid-cols-6 grid-rows-1">
-            <Button onClick={() => setCurrentKeypad("func")}>
-              <TbMathFunction />
-            </Button>
-            <Button onClick={() => setCalculationResults([])}>
-              <FaEraser />
-            </Button>
-            <SettingsModal />
-            <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>DEL</Button>
-            <Button onClick={equationControllers.reset}>AC</Button>
-            <Button color={"blue"} type={"submit"}>
-              <IoArrowRedoSharp />
-            </Button>
-          </div>
-        </form>
+        {isKeypadActive && (
+          <form className="fixed bottom-0 w-full bg-slate-300" onSubmit={handleSubmit}>
+            <input
+              className="h-[32px] w-full cursor-pointer rounded border border-red-500 font-roboto-medium font-medium"
+              onChange={(e) => setEquation(e.target.value)}
+              type="text"
+              value={equation}
+            />
+            <div className="h-[64px] w-full rounded border  border-green-500 bg-white">
+              <InlineMath>{String.raw`${equation}`}</InlineMath>
+            </div>
+            <div className="flex">
+              <FuncKeypad {...equationControllers} currentKeypad={currentKeypad} />
+              <MainKeypad {...equationControllers} currentKeypad={currentKeypad} />
+            </div>
+            <div className="grid grid-cols-6 grid-rows-1">
+              <Button onClick={() => setCurrentKeypad("func")}>
+                <TbMathFunction />
+              </Button>
+              <Button onClick={() => setCalculationResults([])}>
+                <FaEraser />
+              </Button>
+              <SettingsModal setIsKeypadActive={setIsKeypadActive} />
+              <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>DEL</Button>
+              <Button onClick={equationControllers.reset}>AC</Button>
+              <Button color={"blue"} type={"submit"}>
+                <IoArrowRedoSharp />
+              </Button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );
