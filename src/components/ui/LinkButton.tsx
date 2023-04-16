@@ -1,17 +1,22 @@
 import Link from "next/link";
-import { ComponentProps, ReactNode } from "react";
+import { ComponentProps, forwardRef, ReactNode } from "react";
 
 type Props = Omit<ComponentProps<typeof Link>, "className"> & {
   children: ReactNode;
 };
 
-export const LinkButton = ({ children, ...rest }: Props): JSX.Element => {
-  return (
-    <Link
-      className="flex h-[32px] cursor-pointer items-center justify-center rounded border font-medium"
-      {...rest}
-    >
-      {children}
-    </Link>
-  );
-};
+export const LinkButton = forwardRef<HTMLAnchorElement, Props>(
+  ({ children, ...rest }, forwardRef): JSX.Element => {
+    return (
+      <Link
+        ref={forwardRef}
+        className="flex h-[32px] cursor-pointer items-center justify-center rounded border font-medium"
+        {...rest}
+      >
+        {children}
+      </Link>
+    );
+  },
+);
+
+LinkButton.displayName = "LinkButton";
