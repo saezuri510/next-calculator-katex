@@ -20,6 +20,15 @@ const IndexPage: NextPage = () => {
 
   const { equation, equationControllers, setEquation } = useEquation("");
 
+  const handleScreenShot = async () => {
+    const res = await fetch("/api/screenshot", {
+      body: "localhost:3000",
+      method: "GET",
+    });
+
+    console.log(res);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //式を受け取り計算
@@ -31,6 +40,7 @@ const IndexPage: NextPage = () => {
     <div>
       <div>
         <div>
+          <Button onClick={() => handleScreenShot()}>screenshot</Button>
           {calculationResults.map((result, idx) => (
             <div key={idx} className="flex">
               <InlineMath>{String.raw`${result}`}</InlineMath>
