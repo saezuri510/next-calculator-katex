@@ -20,13 +20,8 @@ const IndexPage: NextPage = () => {
 
   const { equation, equationControllers, setEquation } = useEquation("");
 
-  const handleScreenShot = async () => {
-    const res = await fetch("/api/screenshot", {
-      body: "localhost:3000",
-      method: "GET",
-    });
-
-    console.log(res);
+  const handleScreenShot = () => {
+    console.log("screenshot?");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
