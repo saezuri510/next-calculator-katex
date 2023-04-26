@@ -11,6 +11,11 @@ import "katex/dist/katex.min.css";
 import { SettingsModal } from "../components/modals/SettingsModal";
 import { Button } from "../components/ui/Button";
 import { useEquation } from "../hooks/useEquation";
+
+// バグでimport error がでる.
+// eslint-disable-next-line import/order
+import html2canvas from "html2canvas";
+
 import type { KeypadCategory } from "../types/KeypadCategory";
 
 const IndexPage: NextPage = () => {
@@ -20,8 +25,14 @@ const IndexPage: NextPage = () => {
 
   const { equation, equationControllers, setEquation } = useEquation("");
 
-  const handleScreenShot = () => {
-    console.log("screenshot?");
+  const handleScreenShot = async () => {
+    const captureElement = document.querySelector("#capture") as HTMLElement;
+    const screenshot = await html2canvas(captureElement);
+
+    const link = document.createElement("a");
+    link.href = screenshot.toDataURL();
+    link.download = "screenshot.png";
+    link.click();
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,11 +47,13 @@ const IndexPage: NextPage = () => {
       <div>
         <div>
           <Button onClick={() => handleScreenShot()}>screenshot</Button>
-          {calculationResults.map((result, idx) => (
-            <div key={idx} className="flex">
-              <InlineMath>{String.raw`${result}`}</InlineMath>
-            </div>
-          ))}
+          <div id="capture">
+            {calculationResults.map((result, idx) => (
+              <div key={idx} className="flex">
+                <InlineMath>{String.raw`${result}`}</InlineMath>
+              </div>
+            ))}
+          </div>
         </div>
         {isKeypadActive && (
           <form className="fixed bottom-0 w-full bg-slate-300" onSubmit={handleSubmit}>
