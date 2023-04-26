@@ -1,3 +1,4 @@
+import html2canvas from "html2canvas";
 import type { NextPage } from "next";
 import { useState } from "react";
 import { FaEraser } from "react-icons/fa";
@@ -11,11 +12,6 @@ import "katex/dist/katex.min.css";
 import { SettingsModal } from "../components/modals/SettingsModal";
 import { Button } from "../components/ui/Button";
 import { useEquation } from "../hooks/useEquation";
-
-// バグでimport error がでる.
-// eslint-disable-next-line import/order
-import html2canvas from "html2canvas";
-
 import type { KeypadCategory } from "../types/KeypadCategory";
 
 const IndexPage: NextPage = () => {
