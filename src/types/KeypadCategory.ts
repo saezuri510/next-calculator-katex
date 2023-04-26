@@ -1,1 +1,1 @@
-export type KeypadCategory = "main" | "func";
+export type KeypadCategory = "main" | "func" | "func2";

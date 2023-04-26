@@ -3,15 +3,17 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import { FaEraser } from "react-icons/fa";
 import { IoArrowRedoSharp } from "react-icons/io5";
-import { TbMathFunction } from "react-icons/tb";
+import { TbMathFunction, TbMathIntegral, TbMathSymbols } from "react-icons/tb";
 import { InlineMath } from "react-katex";
 
+import { Func2Keypad } from "../components/keypads/Func2Keypad";
 import { FuncKeypad } from "../components/keypads/FuncKeypad";
 import { MainKeypad } from "../components/keypads/MainKeypad";
 import "katex/dist/katex.min.css";
 import { SettingsModal } from "../components/modals/SettingsModal";
 import { Button } from "../components/ui/Button";
 import { useEquation } from "../hooks/useEquation";
+import { useWindowWidth } from "../hooks/useWindowWidth";
 import type { KeypadCategory } from "../types/KeypadCategory";
 
 const IndexPage: NextPage = () => {
@@ -20,6 +22,7 @@ const IndexPage: NextPage = () => {
   const [isKeypadActive, setIsKeypadActive] = useState<boolean>(true);
 
   const { equation, equationControllers, setEquation } = useEquation("");
+  const { windowWidth } = useWindowWidth();
 
   const handleScreenShot = async () => {
     const captureElement = document.querySelector("#capture") as HTMLElement;
@@ -64,12 +67,45 @@ const IndexPage: NextPage = () => {
             </div>
             <div className="flex">
               <FuncKeypad {...equationControllers} currentKeypad={currentKeypad} />
+              <Func2Keypad {...equationControllers} currentKeypad={currentKeypad} />
               <MainKeypad {...equationControllers} currentKeypad={currentKeypad} />
             </div>
             <div className="grid grid-cols-6 grid-rows-1">
-              <Button onClick={() => setCurrentKeypad("func")}>
-                <TbMathFunction />
-              </Button>
+              {(() => {
+                if (windowWidth === "sm") {
+                  switch (currentKeypad) {
+                    case "main":
+                      return (
+                        <Button onClick={() => setCurrentKeypad("func")}>
+                          <TbMathFunction />
+                        </Button>
+                      );
+                    case "func":
+                      return (
+                        <Button onClick={() => setCurrentKeypad("func2")}>
+                          <TbMathIntegral />
+                        </Button>
+                      );
+                    case "func2":
+                      return (
+                        <Button onClick={() => setCurrentKeypad("main")}>
+                          <TbMathSymbols />
+                        </Button>
+                      );
+                  }
+                } else {
+                  return currentKeypad !== "func2" ? (
+                    <Button onClick={() => setCurrentKeypad("func2")}>
+                      <TbMathIntegral />
+                    </Button>
+                  ) : (
+                    <Button onClick={() => setCurrentKeypad("func")}>
+                      <TbMathFunction />
+                    </Button>
+                  );
+                }
+              })()}
+
               <Button onClick={() => setCalculationResults([])}>
                 <FaEraser />
               </Button>

@@ -9,10 +9,11 @@ import { Button } from "../ui/Button";
 export const FuncKeypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JSX.Element => {
   return (
     <div
-      className={classNames(
-        "w-full grid-cols-6 grid-rows-4 sm:grid sm:w-2/4",
-        currentKeypad === "func" ? "grid" : "hidden",
-      )}
+      className={classNames("w-full grid-cols-6 grid-rows-4 sm:w-2/4", {
+        grid: currentKeypad === "func",
+        hidden: currentKeypad === "func2",
+        "hidden sm:grid": currentKeypad === "main",
+      })}
     >
       <Button onClick={() => entrySymbol("<")}>{"<"}</Button>
       <Button onClick={() => entrySymbol("\\leqq")}>
