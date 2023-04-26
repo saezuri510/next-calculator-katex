@@ -7,27 +7,20 @@ export const useWindowWidth = () => {
     const func = () => {
       const width = window.innerWidth;
 
-      switch (true) {
-        case width <= 640:
-          setWindowWidth("sm");
-          break;
-        case width <= 768:
-          setWindowWidth("md");
-          break;
-        case width <= 1024:
-          setWindowWidth("lg");
-          break;
-        case width <= 1280:
-          setWindowWidth("xl");
-          break;
-        case width <= 1536:
-          setWindowWidth("2xl");
-          break;
+      if (width <= 640) {
+        setWindowWidth("sm");
+      } else if (width <= 768) {
+        setWindowWidth("md");
+      } else if (width <= 1024) {
+        setWindowWidth("lg");
+      } else if (width <= 1280) {
+        setWindowWidth("xl");
+      } else {
+        setWindowWidth("2xl");
       }
     };
 
     window.addEventListener("resize", func);
-    func();
     return () => window.removeEventListener("resize", func);
   }, []);
 
