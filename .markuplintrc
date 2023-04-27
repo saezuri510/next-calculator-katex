@@ -16,6 +16,7 @@
           "jsx"
         ]
       }
-    }
+    },
+    "no-hard-code-id": false
   }
 }

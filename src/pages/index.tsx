@@ -1,4 +1,3 @@
-import html2canvas from "html2canvas";
 import type { NextPage } from "next";
 import { useState } from "react";
 import { FaEraser } from "react-icons/fa";
@@ -15,6 +14,7 @@ import { Button } from "../components/ui/Button";
 import { useEquation } from "../hooks/useEquation";
 import { useWindowWidth } from "../hooks/useWindowWidth";
 import type { KeypadCategory } from "../types/KeypadCategory";
+import { captureElement } from "../utils/captureElement";
 
 const IndexPage: NextPage = () => {
   const [calculationResults, setCalculationResults] = useState<string[]>([]);
@@ -23,16 +23,6 @@ const IndexPage: NextPage = () => {
 
   const { equation, equationControllers, setEquation } = useEquation("");
   const { windowWidth } = useWindowWidth();
-
-  const handleScreenShot = async () => {
-    const captureElement = document.querySelector("#capture") as HTMLElement;
-    const screenshot = await html2canvas(captureElement);
-
-    const link = document.createElement("a");
-    link.href = screenshot.toDataURL();
-    link.download = "screenshot.png";
-    link.click();
-  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,7 +35,7 @@ const IndexPage: NextPage = () => {
     <div>
       <div>
         <div>
-          <Button onClick={() => handleScreenShot()}>screenshot</Button>
+          <Button onClick={() => captureElement("#capture")}>screenshot</Button>
           <div id="capture">
             {calculationResults.map((result, idx) => (
               <div key={idx} className="flex">
