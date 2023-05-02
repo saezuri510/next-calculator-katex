@@ -10,7 +10,7 @@ export const User = objectType({
 
 export const UserQuery = extendType({
   definition(t) {
-    t.nonNull.list.field("tasks", {
+    t.nonNull.list.field("users", {
       resolve(_parent, _args, ctx) {
         return ctx.prisma.user.findMany();
       },
