@@ -9,6 +9,12 @@ const cors = Cors();
 const apolloServer = new ApolloServer({ context: createContext, schema });
 const startServer = apolloServer.start();
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 export default cors(async function handler(req, res) {
   if (req.method === "OPTIONS") {
     res.end();
