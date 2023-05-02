@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
+    "codegen": "graphql-codegen --config codegen.ts",
     "lint": "next lint",
     "lint:html": "markuplint './src/**/*.{jsx,tsx}'",
     "format": "npm-run-all -s format:*",
