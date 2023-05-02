@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 
-export const useWindowWidth = () => {
-  const [windowWidth, setWindowWidth] = useState<"sm" | "md" | "lg" | "xl" | "2xl">("2xl");
+export const useResponsiveSize = () => {
+  const [ResponsiveSize, setResponsiveSize] = useState<"sm" | "md" | "lg" | "xl" | "2xl">("2xl");
 
   useEffect(() => {
     const func = () => {
       const width = window.innerWidth;
 
       if (width <= 640) {
-        setWindowWidth("sm");
+        setResponsiveSize("sm");
       } else if (width <= 768) {
-        setWindowWidth("md");
+        setResponsiveSize("md");
       } else if (width <= 1024) {
-        setWindowWidth("lg");
+        setResponsiveSize("lg");
       } else if (width <= 1280) {
-        setWindowWidth("xl");
+        setResponsiveSize("xl");
       } else {
-        setWindowWidth("2xl");
+        setResponsiveSize("2xl");
       }
     };
 
@@ -24,5 +24,5 @@ export const useWindowWidth = () => {
     return () => window.removeEventListener("resize", func);
   }, []);
 
-  return { windowWidth };
+  return { ResponsiveSize };
 };

@@ -12,7 +12,7 @@ import "katex/dist/katex.min.css";
 import { SettingsModal } from "../components/modals/SettingsModal";
 import { Button } from "../components/ui/Button";
 import { useEquation } from "../hooks/useEquation";
-import { useWindowWidth } from "../hooks/useWindowWidth";
+import { useResponsiveSize } from "../hooks/useResponsiveSize";
 import type { KeypadCategory } from "../types/KeypadCategory";
 import { captureElement } from "../utils/captureElement";
 
@@ -22,7 +22,7 @@ const IndexPage: NextPage = () => {
   const [isKeypadActive, setIsKeypadActive] = useState<boolean>(true);
 
   const { equation, equationControllers, setEquation } = useEquation("");
-  const { windowWidth } = useWindowWidth();
+  const { ResponsiveSize } = useResponsiveSize();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ const IndexPage: NextPage = () => {
             </div>
             <div className="grid grid-cols-6 grid-rows-1">
               {(() => {
-                if (windowWidth === "sm") {
+                if (ResponsiveSize === "sm") {
                   switch (currentKeypad) {
                     case "main":
                       return (
