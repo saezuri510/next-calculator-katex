@@ -1,3 +1,4 @@
+import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 import { useState } from "react";
 import { FaEraser } from "react-icons/fa";
@@ -11,6 +12,7 @@ import { MainKeypad } from "../components/keypads/MainKeypad";
 import "katex/dist/katex.min.css";
 import { SettingsModal } from "../components/modals/SettingsModal";
 import { Button } from "../components/ui/Button";
+import { AllUsersDocument } from "../graphql/generated/graphql";
 import { useEquation } from "../hooks/useEquation";
 import { useResponsiveSize } from "../hooks/useResponsiveSize";
 import type { KeypadCategory } from "../types/KeypadCategory";
@@ -24,6 +26,8 @@ const IndexPage: NextPage = () => {
   const { equation, equationControllers, setEquation } = useEquation("");
   const { ResponsiveSize } = useResponsiveSize();
 
+  const { data, error, loading } = useQuery(AllUsersDocument);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //式を受け取り計算
@@ -31,11 +35,28 @@ const IndexPage: NextPage = () => {
     equationControllers.reset();
   };
 
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+
+  if (loading) {
+    return <p>loading...</p>;
+  }
+
   return (
     <div>
       <div>
         <div>
           <Button onClick={() => captureElement("#capture")}>screenshot</Button>
+          <ul>
+            {data?.users.map((user, idx) => {
+              return (
+                <li key={idx}>
+                  <p>{user?.name}</p>
+                </li>
+              );
+            })}
+          </ul>
           <div id="capture">
             {calculationResults.map((result, idx) => (
               <div key={idx} className="flex">
