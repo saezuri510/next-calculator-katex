@@ -2,7 +2,7 @@
 module.exports = {
   content: ["./src/pages/**/*.{js,jsx,ts,tsx}", "./src/components/**/*.{js,jsx,ts,tsx}"],
   mode: "jit",
-  plugins: [require("tailwindcss-radix")()],
+  plugins: [],
   theme: {
     extend: {
       fontFamily: {
