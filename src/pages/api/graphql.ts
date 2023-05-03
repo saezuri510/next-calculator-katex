@@ -1,4 +1,7 @@
+import { IncomingMessage, ServerResponse } from "http";
+
 import { ApolloServer } from "apollo-server-micro";
+import { MicroRequest } from "apollo-server-micro/dist/types";
 import Cors from "micro-cors";
 
 import { createContext } from "../../graphql/context";
@@ -15,7 +18,7 @@ export const config = {
   },
 };
 
-export default cors(async function handler(req, res) {
+const handler = async (req: MicroRequest, res: ServerResponse<IncomingMessage>) => {
   if (req.method === "OPTIONS") {
     res.end();
     return false;
@@ -24,4 +27,6 @@ export default cors(async function handler(req, res) {
   await apolloServer.createHandler({
     path: "/api/graphql",
   })(req, res);
-});
+};
+
+export default cors(handler);
