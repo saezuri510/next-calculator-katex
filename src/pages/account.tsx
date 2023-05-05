@@ -1,16 +1,17 @@
 import { NextPage } from "next";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useRouter } from "next/router";
 
+import { useAuthContext } from "../components/contexts/AuthContext";
 import { Button } from "../components/ui/Button";
 import { auth } from "../lib/firebase";
 
 const AccountPage: NextPage = () => {
-  const [user] = useAuthState(auth);
+  const { user } = useAuthContext();
+  const router = useRouter();
 
-  const handleClick = () => {
-    auth.signOut();
-    // TODO: useRouterを使ったページ遷移を実装する.
-    console.log("go to root");
+  const handleClick = async () => {
+    await auth.signOut();
+    router.back();
   };
 
   return user ? (

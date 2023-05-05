@@ -1,11 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { signInWithPopup } from "firebase/auth";
 import { Dispatch, memo, SetStateAction } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { ImCross } from "react-icons/im";
 import { IoSettingsSharp } from "react-icons/io5";
 
-import { auth, provider } from "../../lib/firebase";
+import { auth } from "../../lib/firebase";
+import { useAuthContext } from "../contexts/AuthContext";
 import { Button } from "../ui/Button";
 import { LinkButton } from "../ui/LinkButton";
 
@@ -14,7 +13,7 @@ type Props = {
 };
 
 export const SettingsModal = memo(({ setIsKeypadActive }: Props): JSX.Element => {
-  const [user] = useAuthState(auth);
+  const { user } = useAuthContext();
 
   return (
     <Dialog.Root>
@@ -28,9 +27,7 @@ export const SettingsModal = memo(({ setIsKeypadActive }: Props): JSX.Element =>
         <Dialog.Content className="fixed top-[50%] left-[50%] h-[80%] w-[90%] max-w-[350px] translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-[6px] bg-white p-[24px]">
           <Dialog.Title className="text-[24px] font-bold">設定</Dialog.Title>
           <div className="m-[12px] flex flex-col space-y-[8px]">
-            {!user && (
-              <Button onClick={() => signInWithPopup(auth, provider)}>ログイン、新規登録</Button>
-            )}
+            {!user && <LinkButton href="/login">ログイン、新規登録</LinkButton>}
             <LinkButton href="/trend">今日の数学</LinkButton>
             <LinkButton href="/share">シェア、エクスポート</LinkButton>
             <Dialog.Close asChild>
