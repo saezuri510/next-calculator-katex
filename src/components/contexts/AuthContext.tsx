@@ -5,13 +5,13 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 
 import { auth } from "../../lib/firebase";
 
-export type NullableUser = User | null;
+type NullableUser = User | null;
 
-export type AuthContextProps = {
+type AuthContextProps = {
   user: NullableUser;
 };
 
-export type AuthProps = {
+type AuthProps = {
   children: ReactNode;
 };
 
