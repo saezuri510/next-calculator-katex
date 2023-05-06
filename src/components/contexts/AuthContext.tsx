@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
-import type { User } from "firebase/auth";
+import type { NextOrObserver, User } from "firebase/auth";
 import { useRouter } from "next/router";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
@@ -33,16 +33,18 @@ export const AuthProvider = ({ children }: AuthProps): JSX.Element => {
   const IS_REQUIRE_LOGIN = router.pathname === "/account";
 
   useEffect(() => {
-    const authStateChanged = onAuthStateChanged(auth, async (user) => {
+    const authStateChanged: NextOrObserver<User> = async (user) => {
       setUser(user);
 
       if (!user && IS_REQUIRE_LOGIN) {
         await router.push("/login");
       }
-    });
+    };
+
+    const unsubscribe = onAuthStateChanged(auth, authStateChanged);
 
     return () => {
-      authStateChanged();
+      unsubscribe();
     };
   }, [IS_REQUIRE_LOGIN, router]);
 
