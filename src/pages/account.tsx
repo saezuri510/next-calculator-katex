@@ -11,7 +11,7 @@ const AccountPage: NextPage = () => {
 
   const handleClick = async () => {
     await auth.signOut();
-    router.back();
+    router.push("/");
   };
 
   return user ? (
