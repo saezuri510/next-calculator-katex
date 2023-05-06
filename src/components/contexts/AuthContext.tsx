@@ -15,7 +15,7 @@ export type AuthProps = {
   children: ReactNode;
 };
 
-const AuthContext = createContext<Partial<AuthContextProps>>({});
+const AuthContext = createContext<AuthContextProps>({ user: null });
 
 export const useAuthContext = () => {
   return useContext(AuthContext);
