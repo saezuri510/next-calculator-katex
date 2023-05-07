@@ -1,4 +1,4 @@
-import { prisma } from "../src/lib/prisma";
+import { prisma } from "./prisma";
 
 const main = async () => {
   await prisma.user.createMany({
