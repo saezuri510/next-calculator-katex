@@ -7,11 +7,12 @@ type Props = Omit<ComponentProps<"button">, "className" | "type"> & {
   color?: "white" | "gray" | "blue";
   type?: "button" | "submit";
   size?: "smallBox" | "fit" | "largeFit" | "regular";
+  padding?: boolean;
 };
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
   (
-    { children, color = "white", size = "regular", type = "button", ...rest },
+    { children, color = "white", padding, size = "regular", type = "button", ...rest },
     forwardRef,
   ): JSX.Element => {
     return (
@@ -27,6 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
             "h-[32px] w-[32px]": size === "smallBox",
             "h-[32px] w-fit p-[16px]": size === "fit",
             "h-[48px] w-fit p-[16px]": size === "largeFit",
+            "px-[16px]": padding,
           },
         )}
         type={type}

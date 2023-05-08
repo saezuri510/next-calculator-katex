@@ -15,6 +15,7 @@ import { Button } from "../components/ui/Button";
 import { AllUsersDocument } from "../graphql/generated/graphql";
 import { useEquation } from "../hooks/useEquation";
 import { useResponsiveSize } from "../hooks/useResponsiveSize";
+import { useToastStates } from "../recoil/useToastStates";
 import type { KeypadCategory } from "../types/KeypadCategory";
 import { captureElement } from "../utils/captureElement";
 
@@ -27,6 +28,9 @@ const IndexPage: NextPage = () => {
   const { ResponsiveSize } = useResponsiveSize();
 
   const { data, error, loading } = useQuery(AllUsersDocument);
+
+  // TODO: テストコードなので削除する.
+  const { setToastValues } = useToastStates();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,6 +51,14 @@ const IndexPage: NextPage = () => {
     <div>
       <div>
         <div>
+          {/* TODO: テストコードなので削除する. */}
+          <Button
+            onClick={() =>
+              setToastValues({ description: "this is test", isActive: true, title: "test" })
+            }
+          >
+            test
+          </Button>
           <Button onClick={() => captureElement("#capture")}>screenshot</Button>
           <ul>
             {data?.users.map((user, idx) => {
