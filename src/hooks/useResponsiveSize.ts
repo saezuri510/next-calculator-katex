@@ -24,5 +24,5 @@ export const useResponsiveSize = () => {
     return () => window.removeEventListener("resize", func);
   }, []);
 
-  return { ResponsiveSize };
+  return { ResponsiveSize } as const;
 };
