@@ -39,6 +39,7 @@ const IndexPage: NextPage = () => {
     equationControllers.reset();
   };
 
+  // TODO: テスト用だから削除する.
   if (error) {
     return <p>{error.message}</p>;
   }
