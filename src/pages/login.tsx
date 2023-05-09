@@ -2,6 +2,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 
@@ -16,19 +17,27 @@ type FormValues = {
 };
 
 const LoginPage: NextPage = () => {
+  const [firebaseErrorMessage, setFirebaseErrorMessage] = useState<string>("");
+
   const router = useRouter();
 
   const {
     formState: { errors },
     handleSubmit,
     register,
-    reset,
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    await signInWithEmailAndPassword(auth, data.email, data.password);
-    reset();
-    router.push("/");
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      router.push("/");
+    } catch (e) {
+      if (e instanceof Error) {
+        setFirebaseErrorMessage(e.message);
+      } else {
+        setFirebaseErrorMessage(String(e));
+      }
+    }
   };
 
   const handleClick = async () => {
@@ -85,6 +94,7 @@ const LoginPage: NextPage = () => {
                 render={({ message }) => <div className="text-red-500">{message}</div>}
               />
             </div>
+            <div className="text-red-500">{firebaseErrorMessage}</div>
             <div className="flex justify-end">
               <Button color="blue" size="fit" type="submit">
                 ログイン
