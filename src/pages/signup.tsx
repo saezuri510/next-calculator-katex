@@ -9,6 +9,7 @@ import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import { LinkButton } from "../components/ui/LinkButton";
 import { auth, provider } from "../lib/firebase";
+import { useToastStates } from "../recoil/useToastStates";
 
 type FormValues = {
   email: string;
@@ -18,16 +19,17 @@ type FormValues = {
 const SignupPage: NextPage = () => {
   const router = useRouter();
 
+  const { setToastValues } = useToastStates();
+
   const {
     formState: { errors },
     handleSubmit,
     register,
-    reset,
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password);
-    reset();
+    setToastValues({ description: "新規登録しました", isActive: true, title: "新規登録しました" });
     router.push("/");
   };
 

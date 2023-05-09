@@ -10,6 +10,7 @@ import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
 import { LinkButton } from "../components/ui/LinkButton";
 import { auth, provider } from "../lib/firebase";
+import { useToastStates } from "../recoil/useToastStates";
 
 type FormValues = {
   email: string;
@@ -18,6 +19,8 @@ type FormValues = {
 
 const LoginPage: NextPage = () => {
   const [firebaseErrorMessage, setFirebaseErrorMessage] = useState<string>("");
+
+  const { setToastValues } = useToastStates();
 
   const router = useRouter();
 
@@ -30,6 +33,11 @@ const LoginPage: NextPage = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
+      setToastValues({
+        description: "ログインしました",
+        isActive: true,
+        title: "ログインしました",
+      });
       router.push("/");
     } catch (e) {
       if (e instanceof Error) {
