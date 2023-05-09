@@ -1,3 +1,4 @@
+import { ErrorMessage } from "@hookform/error-message";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -17,7 +18,12 @@ type FormValues = {
 const SignupPage: NextPage = () => {
   const router = useRouter();
 
-  const { handleSubmit, register, reset } = useForm<FormValues>();
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+    reset,
+  } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password);
@@ -43,13 +49,41 @@ const SignupPage: NextPage = () => {
               <label className="w-fit cursor-pointer" htmlFor="email">
                 メールアドレス
               </label>
-              <Input {...register("email")} id="email" />
+              <Input
+                {...register("email", {
+                  pattern: {
+                    message: "メールアドレスの形式が間違っています",
+                    value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                  },
+                  required: "これは入力必須項目です",
+                })}
+                id="email"
+              />
+              <ErrorMessage
+                errors={errors}
+                name="email"
+                render={({ message }) => <div className="text-red-500">{message}</div>}
+              />
             </div>
             <div className="flex flex-col">
               <label className="w-fit cursor-pointer" htmlFor="password">
                 パスワード
               </label>
-              <Input {...register("password")} id="password" />
+              <Input
+                {...register("password", {
+                  minLength: {
+                    message: "パスワードは8文字以上必要です",
+                    value: 8,
+                  },
+                  required: "これは入力必須項目です",
+                })}
+                id="password"
+              />
+              <ErrorMessage
+                errors={errors}
+                name="password"
+                render={({ message }) => <div className="text-red-500">{message}</div>}
+              />
             </div>
             <div className="flex justify-end">
               <Button color="blue" size="fit" type="submit">
