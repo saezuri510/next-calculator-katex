@@ -40,7 +40,7 @@ const SignupPage: NextPage = () => {
 
   return (
     <div className="h-screen w-full bg-red-200">
-      <div className="fixed inset-0 m-auto h-full w-[512px] rounded border-[3px] border-red-500 bg-gray-100 p-[16px]">
+      <div className="fixed inset-0 m-auto h-full w-full rounded border-[3px] border-red-500 bg-gray-100 p-[16px] sm:w-[512px]">
         <h1 className="text-[32px] font-bold">新規登録</h1>
         <div className="flex h-full flex-col justify-evenly">
           <form
