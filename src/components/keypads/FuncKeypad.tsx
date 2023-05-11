@@ -35,7 +35,7 @@ export const FuncKeypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JS
       <Button onClick={() => entrySymbol("30^\\circ")}>
         <InlineMath>{"30^\\circ"}</InlineMath>
       </Button>
-      <Button onClick={() => entrySymbol("⌊⌋")}>{"⌊⌋"}</Button>
+      <Button onClick={() => entrySymbol("⌊⌋")}>⌊⌋</Button>
       <Button onClick={() => entrySymbol("\\displaystyle\\sum_{i=1}^n{3}")}>
         <Image alt="sigma" height={60} src="/svgDrawio/sigma.drawio.svg" width={80} />
       </Button>
@@ -63,7 +63,7 @@ export const FuncKeypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JS
       <Button onClick={() => entrySymbol("\\sqrt[2]{3}")}>
         <InlineMath>{"\\sqrt[2]{3}"}</InlineMath>
       </Button>
-      <Button onClick={() => entrySymbol("≒")}>{"≒"}</Button>
+      <Button onClick={() => entrySymbol("≒")}>≒</Button>
       <Button onClick={() => entrySymbol("\\pm")}>
         <InlineMath>{"\\pm"}</InlineMath>
       </Button>

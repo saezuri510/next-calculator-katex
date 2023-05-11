@@ -25,6 +25,16 @@
         "shorthandFirst": true
       }
     ],
-    "sort/imports": ["off"]
+    "sort/imports": ["off"],
+    "react/jsx-curly-brace-presence": "error",
+    "react/jsx-boolean-value": "error",
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    "prefer-template": "error"
   }
 }

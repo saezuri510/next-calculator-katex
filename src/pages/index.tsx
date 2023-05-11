@@ -140,7 +140,7 @@ const IndexPage: NextPage = () => {
               </SettingsModal>
               <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>DEL</Button>
               <Button onClick={equationControllers.reset}>AC</Button>
-              <Button color={"blue"} type={"submit"}>
+              <Button color="blue" type="submit">
                 <IoArrowRedoSharp />
               </Button>
             </div>
