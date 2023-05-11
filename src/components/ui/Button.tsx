@@ -6,7 +6,7 @@ type Props = Omit<ComponentProps<"button">, "className" | "type"> & {
   children: ReactNode;
   color?: "white" | "gray" | "blue";
   type?: "button" | "submit";
-  size?: "smallBox" | "fit" | "largeFit" | "regular";
+  size?: "smallBox" | "fit" | "largeFit" | "regular" | "circle";
   padding?: boolean;
 };
 
@@ -29,6 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
             "h-[32px] w-fit p-[16px]": size === "fit",
             "h-[48px] w-fit p-[16px]": size === "largeFit",
             "px-[16px]": padding,
+            "rounded-full p-[16px]": size === "circle",
           },
         )}
         type={type}

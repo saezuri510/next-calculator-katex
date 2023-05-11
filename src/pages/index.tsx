@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 import { useState } from "react";
 import { FaEraser } from "react-icons/fa";
-import { IoArrowRedoSharp } from "react-icons/io5";
+import { IoArrowRedoSharp, IoSettingsSharp } from "react-icons/io5";
 import { TbMathFunction, TbMathIntegral, TbMathSymbols } from "react-icons/tb";
 import { InlineMath } from "react-katex";
 
@@ -15,9 +15,8 @@ import { Button } from "../components/ui/Button";
 import { AllUsersDocument } from "../graphql/generated/graphql";
 import { useEquation } from "../hooks/useEquation";
 import { useResponsiveSize } from "../hooks/useResponsiveSize";
-import { useToastStates } from "../recoil/useToastStates";
+import { useWindowScroll } from "../hooks/useWindowScroll";
 import type { KeypadCategory } from "../types/KeypadCategory";
-import { captureElement } from "../utils/captureElement";
 
 const IndexPage: NextPage = () => {
   const [calculationResults, setCalculationResults] = useState<string[]>([]);
@@ -26,11 +25,11 @@ const IndexPage: NextPage = () => {
 
   const { equation, equationControllers, setEquation } = useEquation("");
   const { ResponsiveSize } = useResponsiveSize();
-
   const { data, error, loading } = useQuery(AllUsersDocument);
-
   // TODO: テストコードなので削除する.
-  const { setToastValues } = useToastStates();
+  const { isElementShown } = useWindowScroll(true);
+
+  const isMenuShown = !isKeypadActive && isElementShown;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,15 +51,16 @@ const IndexPage: NextPage = () => {
     <div>
       <div>
         <div>
+          {isMenuShown && (
+            <div className="fixed bottom-[64px] right-[64px]">
+              <SettingsModal isKeypadActive={isKeypadActive} setIsKeypadActive={setIsKeypadActive}>
+                <Button size="circle">
+                  <IoSettingsSharp className="h-[48px] w-[48px]" />
+                </Button>
+              </SettingsModal>
+            </div>
+          )}
           {/* TODO: テストコードなので削除する. */}
-          <Button
-            onClick={() =>
-              setToastValues({ description: "this is test", isActive: true, title: "test" })
-            }
-          >
-            test
-          </Button>
-          <Button onClick={() => captureElement("#capture")}>screenshot</Button>
           <ul>
             {data?.users.map((user, idx) => {
               return (
@@ -70,7 +70,7 @@ const IndexPage: NextPage = () => {
               );
             })}
           </ul>
-          <div id="capture">
+          <div className="min-h-[101vh]" id="capture">
             {calculationResults.map((result, idx) => (
               <div key={idx} className="flex">
                 <InlineMath>{String.raw`${result}`}</InlineMath>
@@ -86,7 +86,7 @@ const IndexPage: NextPage = () => {
               type="text"
               value={equation}
             />
-            <div className="h-[64px] w-full rounded border  border-green-500 bg-white">
+            <div className="h-[64px] w-full rounded border border-green-500 bg-white">
               <InlineMath>{String.raw`${equation}`}</InlineMath>
             </div>
             <div className="flex">
@@ -133,7 +133,11 @@ const IndexPage: NextPage = () => {
               <Button onClick={() => setCalculationResults([])}>
                 <FaEraser />
               </Button>
-              <SettingsModal setIsKeypadActive={setIsKeypadActive} />
+              <SettingsModal isKeypadActive={isKeypadActive} setIsKeypadActive={setIsKeypadActive}>
+                <Button>
+                  <IoSettingsSharp />
+                </Button>
+              </SettingsModal>
               <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>DEL</Button>
               <Button onClick={equationControllers.reset}>AC</Button>
               <Button color={"blue"} type={"submit"}>
