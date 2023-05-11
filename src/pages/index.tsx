@@ -25,8 +25,8 @@ const IndexPage: NextPage = () => {
 
   const { equation, equationControllers, setEquation } = useEquation("");
   const { ResponsiveSize } = useResponsiveSize();
-  const { data, error, loading } = useQuery(AllUsersDocument);
   // TODO: テストコードなので削除する.
+  const { data, error, loading } = useQuery(AllUsersDocument);
   const { isElementShown } = useWindowScroll(true);
 
   const isMenuShown = !isKeypadActive && isElementShown;
