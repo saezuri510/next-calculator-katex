@@ -66,13 +66,13 @@ const IndexPage: NextPage = () => {
                   isKeypadActive={isKeypadActive}
                   setIsKeypadActive={setIsKeypadActive}
                 >
-                  <Button padding="regular" size="circle">
+                  <Button padding="regular" radius="circle" size="unspecified">
                     <IoSettingsSharp className="h-[48px] w-[48px]" />
                   </Button>
                 </SettingsModal>
               </div>
               <div className="fixed bottom-[120px] right-[56px]">
-                <Button color="gray" onClick={handleClick} padding="small" size="circle">
+                <Button color="gray" onClick={handleClick} padding="small" radius="circle">
                   <ImCross />
                 </Button>
               </div>
