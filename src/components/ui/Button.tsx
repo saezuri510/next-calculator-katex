@@ -7,7 +7,7 @@ type Props = Omit<ComponentProps<"button">, "className" | "type"> & {
   color?: "white" | "gray" | "blue";
   type?: "button" | "submit";
   size?: "smallBox" | "fit" | "largeFit" | "regular" | "circle";
-  padding?: boolean;
+  padding?: "small" | "regular" | "onlyHorizontal";
 };
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
@@ -28,8 +28,10 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
             "h-[32px] w-[32px]": size === "smallBox",
             "h-[32px] w-fit p-[16px]": size === "fit",
             "h-[48px] w-fit p-[16px]": size === "largeFit",
-            "px-[16px]": padding,
-            "rounded-full p-[16px]": size === "circle",
+            "p-[8px]": padding === "small",
+            "p-[16px]": padding === "regular",
+            "px-[16px]": padding === "onlyHorizontal",
+            "rounded-full": size === "circle",
           },
         )}
         type={type}

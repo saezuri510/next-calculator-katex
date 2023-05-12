@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 import { useState } from "react";
 import { FaEraser } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 import { IoArrowRedoSharp, IoSettingsSharp } from "react-icons/io5";
 import { TbMathFunction, TbMathIntegral, TbMathSymbols } from "react-icons/tb";
 import { InlineMath } from "react-katex";
@@ -14,6 +15,7 @@ import { SettingsModal } from "../components/modals/SettingsModal";
 import { Button } from "../components/ui/Button";
 import { AllUsersDocument } from "../graphql/generated/graphql";
 import { useEquation } from "../hooks/useEquation";
+import { useInactiveVisibility } from "../hooks/useInactiveVisibility";
 import { useResponsiveSize } from "../hooks/useResponsiveSize";
 import { useWindowScroll } from "../hooks/useWindowScroll";
 import type { KeypadCategory } from "../types/KeypadCategory";
@@ -27,15 +29,21 @@ const IndexPage: NextPage = () => {
   const { ResponsiveSize } = useResponsiveSize();
   // TODO: テストコードなので削除する.
   const { data, error, loading } = useQuery(AllUsersDocument);
-  const { isElementShown } = useWindowScroll(true);
+  const { isElementShown, setIsElementShown } = useWindowScroll(true);
+  const { isVisible, resetTimer } = useInactiveVisibility();
 
-  const isMenuShown = !isKeypadActive && isElementShown;
+  const isMenuShown = (!isKeypadActive && isElementShown) || isVisible;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //式を受け取り計算
     setCalculationResults((prev) => [...prev, equation]);
     equationControllers.reset();
+  };
+
+  const handleClick = () => {
+    setIsElementShown(false);
+    resetTimer();
   };
 
   // TODO: テスト用だから削除する.
@@ -52,12 +60,22 @@ const IndexPage: NextPage = () => {
       <div>
         <div>
           {isMenuShown && (
-            <div className="fixed bottom-[64px] right-[64px]">
-              <SettingsModal isKeypadActive={isKeypadActive} setIsKeypadActive={setIsKeypadActive}>
-                <Button size="circle">
-                  <IoSettingsSharp className="h-[48px] w-[48px]" />
+            <div>
+              <div className="fixed bottom-[64px] right-[64px]">
+                <SettingsModal
+                  isKeypadActive={isKeypadActive}
+                  setIsKeypadActive={setIsKeypadActive}
+                >
+                  <Button padding="regular" size="circle">
+                    <IoSettingsSharp className="h-[48px] w-[48px]" />
+                  </Button>
+                </SettingsModal>
+              </div>
+              <div className="fixed bottom-[120px] right-[56px]">
+                <Button color="gray" onClick={handleClick} padding="small" size="circle">
+                  <ImCross />
                 </Button>
-              </SettingsModal>
+              </div>
             </div>
           )}
           {/* TODO: テストコードなので削除する. */}
@@ -70,7 +88,7 @@ const IndexPage: NextPage = () => {
               );
             })}
           </ul>
-          <div className="min-h-[101vh]" id="capture">
+          <div id="capture">
             {calculationResults.map((result, idx) => (
               <div key={idx} className="flex">
                 <InlineMath>{String.raw`${result}`}</InlineMath>

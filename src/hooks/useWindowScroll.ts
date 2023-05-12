@@ -23,5 +23,5 @@ export const useWindowScroll = (isFirstVisible = false) => {
     return () => window.removeEventListener("scroll", func);
   }, [lastPosition]);
 
-  return { isElementShown } as const;
+  return { isElementShown, setIsElementShown } as const;
 };
