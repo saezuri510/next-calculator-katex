@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { ComponentProps, forwardRef, ReactNode } from "react";
 
-// TODO: スタイルの扱いはまた検討が必要.
 type Props = Omit<ComponentProps<"button">, "className" | "type"> & {
   children: ReactNode;
   color?: "white" | "gray" | "blue";
