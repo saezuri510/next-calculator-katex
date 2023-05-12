@@ -6,7 +6,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { auth } from "../../lib/firebase";
 import { useToastStates } from "../../recoil/useToastStates";
 
-type NullableUser = User | null;
+type NullableUser = User | null | undefined;
 
 type AuthContextProps = {
   user: NullableUser;
@@ -23,7 +23,8 @@ export const useAuthContext = () => {
 };
 
 export const AuthProvider = ({ children }: AuthProps): JSX.Element => {
-  const [user, setUser] = useState<NullableUser>(null);
+  const [user, setUser] = useState<NullableUser>(undefined);
+  const [lastUser, setLastUser] = useState<NullableUser>(undefined);
 
   const router = useRouter();
 
@@ -37,34 +38,41 @@ export const AuthProvider = ({ children }: AuthProps): JSX.Element => {
   const IS_LOGIN_OR_SIGNUP = router.pathname === "/login" || router.pathname === "/signup";
 
   useEffect(() => {
-    const authStateChanged = onAuthStateChanged(auth, async (user) => {
+    const func = onAuthStateChanged(auth, (user) => {
       setUser(user);
-
-      if (!user && IS_REQUIRE_LOGIN) {
-        setToastValues({
-          description: "ログインしてからやり直してください",
-          isActive: true,
-          title: "ログインが必要なところにアクセスしました",
-        });
-        await router.push("/login");
-      }
-
-      if (user && IS_LOGIN_OR_SIGNUP) {
-        setToastValues({
-          description: "ログインページにログイン済みのユーザーがアクセスしました",
-          isActive: true,
-          title: "すでにログインしています",
-        });
-        await router.push("/");
-      }
     });
 
-    router.events.on("routeChangeComplete", authStateChanged);
+    return () => func();
+  }, []);
 
-    return () => {
-      router.events.off("routeChangeComplete", authStateChanged);
-    };
-  }, [IS_LOGIN_OR_SIGNUP, IS_REQUIRE_LOGIN, router, setToastValues]);
+  useEffect(() => {
+    // user情報が取得できている
+    if (user !== undefined) {
+      if (lastUser === undefined) {
+        setLastUser(user);
+      }
+      // user情報に変更が加わる前である
+      if (user === lastUser) {
+        if (!user && IS_REQUIRE_LOGIN) {
+          setToastValues({
+            description: "ログインしてからやり直してください",
+            isActive: true,
+            title: "ログインが必要なところにアクセスしました",
+          });
+          router.push("/login");
+        }
+
+        if (user && IS_LOGIN_OR_SIGNUP) {
+          setToastValues({
+            description: "ログインページにログイン済みのユーザーがアクセスしました",
+            isActive: true,
+            title: "すでにログインしています",
+          });
+          router.push("/");
+        }
+      }
+    }
+  }, [IS_LOGIN_OR_SIGNUP, IS_REQUIRE_LOGIN, lastUser, router, setToastValues, user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
