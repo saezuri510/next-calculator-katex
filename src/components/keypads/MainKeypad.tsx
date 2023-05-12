@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import { memo } from "react";
 import { InlineMath } from "react-katex";
 
@@ -9,7 +9,7 @@ export const MainKeypad = memo(
   ({ currentKeypad, entryNumber, entrySymbol }: KeypadProps): JSX.Element => {
     return (
       <div
-        className={classNames(
+        className={clsx(
           "w-full grid-cols-6 grid-rows-4 sm:grid sm:w-2/4",
           currentKeypad === "main" ? "grid" : "hidden",
         )}

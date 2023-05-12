@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import { ComponentProps, forwardRef, ReactNode } from "react";
 
 type Props = Omit<ComponentProps<"button">, "className" | "type"> & {
@@ -26,23 +26,20 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
     return (
       <button
         ref={forwardRef}
-        className={classNames(
-          "flex cursor-pointer items-center justify-center border font-medium",
-          {
-            "bg-blue-500": color === "blue",
-            "bg-gray-300": color === "gray",
-            "bg-white": color === "white",
-            "h-[32px]": size === "regular",
-            "h-[32px] w-[32px]": size === "smallBox",
-            "h-[32px] w-fit": size === "fit",
-            "h-[48px] w-fit": size === "largeFit",
-            "p-[8px]": padding === "small",
-            "p-[16px]": padding === "regular",
-            "px-[16px]": padding === "onlyHorizontal",
-            rounded: radius === "rounded",
-            "rounded-full": radius === "circle",
-          },
-        )}
+        className={clsx("flex cursor-pointer items-center justify-center border font-medium", {
+          "bg-blue-500": color === "blue",
+          "bg-gray-300": color === "gray",
+          "bg-white": color === "white",
+          "h-[32px]": size === "regular",
+          "h-[32px] w-[32px]": size === "smallBox",
+          "h-[32px] w-fit": size === "fit",
+          "h-[48px] w-fit": size === "largeFit",
+          "p-[8px]": padding === "small",
+          "p-[16px]": padding === "regular",
+          "px-[16px]": padding === "onlyHorizontal",
+          rounded: radius === "rounded",
+          "rounded-full": radius === "circle",
+        })}
         type={type}
         {...rest}
       >

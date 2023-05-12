@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import clsx from "clsx";
 import Link from "next/link";
 import { ComponentProps, forwardRef, ReactNode } from "react";
 
@@ -13,14 +13,11 @@ export const LinkButton = forwardRef<HTMLAnchorElement, Props>(
     return (
       <Link
         ref={forwardRef}
-        className={classNames(
-          "flex h-[32px] cursor-pointer items-center justify-center  font-medium",
-          {
-            "rounded border": pattern === "border",
-            "text-red-600 underline decoration-blue-400": pattern === "underline",
-            "w-fit p-[16px]": size === "fit",
-          },
-        )}
+        className={clsx("flex h-[32px] cursor-pointer items-center justify-center  font-medium", {
+          "rounded border": pattern === "border",
+          "text-red-600 underline decoration-blue-400": pattern === "underline",
+          "w-fit p-[16px]": size === "fit",
+        })}
         {...rest}
       >
         {children}
