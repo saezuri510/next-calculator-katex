@@ -35,6 +35,7 @@ const SignupPage: NextPage = () => {
 
   const handleClick = async () => {
     await signInWithPopup(auth, provider);
+    setToastValues({ description: "新規登録しました", isActive: true, title: "新規登録しました" });
     router.push("/");
   };
 

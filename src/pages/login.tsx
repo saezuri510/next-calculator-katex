@@ -50,6 +50,11 @@ const LoginPage: NextPage = () => {
 
   const handleClick = async () => {
     await signInWithPopup(auth, provider);
+    setToastValues({
+      description: "ログインしました",
+      isActive: true,
+      title: "ログインしました",
+    });
     router.push("/");
   };
 
