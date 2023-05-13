@@ -45,6 +45,7 @@ export const AuthProvider = ({ children }: AuthProps): JSX.Element => {
     return () => func();
   }, []);
 
+  // userがloginまたはlogoutする前の情報を基にページを強制移動させるかどうか判断する
   useEffect(() => {
     // user情報が取得できている
     if (user !== undefined) {
