@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import clsx from "clsx";
 import type { NextPage } from "next";
 import { useState } from "react";
 import { FaEraser } from "react-icons/fa";
@@ -33,7 +34,7 @@ const IndexPage: NextPage = () => {
   const { isElementShown, setIsElementShown } = useWindowScroll(true);
   const { isVisible, resetTimer } = useInactiveVisibility();
 
-  const isMenuShown = (!isKeypadActive && isElementShown) || isVisible;
+  const isMenuShown = !isKeypadActive && (isElementShown || isVisible);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,26 +59,26 @@ const IndexPage: NextPage = () => {
 
   return (
     <div>
-      <div>
-        {isMenuShown && (
-          <div>
-            <div className="fixed bottom-[64px] right-[64px]">
-              <Button
-                onClick={() => setIsOpen(true)}
-                padding="regular"
-                radius="circle"
-                size="unspecified"
-              >
-                <IoSettingsSharp className="h-[48px] w-[48px]" />
-              </Button>
-            </div>
-            <div className="fixed bottom-[120px] right-[56px]">
-              <Button color="gray" onClick={handleClick} padding="small" radius="circle">
-                <ImCross />
-              </Button>
-            </div>
+      {isMenuShown && (
+        <div>
+          <div className="fixed bottom-[64px] right-[64px]">
+            <Button
+              onClick={() => setIsOpen(true)}
+              padding="regular"
+              radius="circle"
+              size="unspecified"
+            >
+              <IoSettingsSharp className="h-[48px] w-[48px]" />
+            </Button>
           </div>
-        )}
+          <div className="fixed bottom-[120px] right-[56px]">
+            <Button color="gray" onClick={handleClick} padding="small" radius="circle">
+              <ImCross />
+            </Button>
+          </div>
+        </div>
+      )}
+      <div className={clsx({ "h-screen overflow-scroll pb-[256px]": isKeypadActive })}>
         {/* TODO: テストコードなので削除する. */}
         <ul>
           {data?.users.map((user, idx) => {
@@ -97,7 +98,7 @@ const IndexPage: NextPage = () => {
         </div>
       </div>
       {isKeypadActive && (
-        <form className="fixed bottom-0 w-full bg-slate-300" onSubmit={handleSubmit}>
+        <form className="fixed bottom-0 h-fit w-full bg-slate-300" onSubmit={handleSubmit}>
           <input
             className="h-[32px] w-full cursor-pointer rounded border border-red-500 font-roboto-medium font-medium"
             onChange={(e) => setEquation(e.target.value)}
@@ -147,7 +148,6 @@ const IndexPage: NextPage = () => {
                 );
               }
             })()}
-
             <Button onClick={() => setCalculationResults([])}>
               <FaEraser />
             </Button>
