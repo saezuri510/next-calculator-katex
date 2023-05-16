@@ -37,10 +37,10 @@ export const FuncKeypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JS
       </Button>
       <Button onClick={() => entrySymbol("⌊⌋")}>⌊⌋</Button>
       <Button onClick={() => entrySymbol("\\displaystyle\\sum_{i=1}^n{3}")}>
-        <Image alt="sigma" height={60} src="/svgDrawio/sigma.drawio.svg" width={80} />
+        <Image alt="sigma" height={60} src="/svg-drawio/sigma.drawio.svg" width={80} />
       </Button>
       <Button onClick={() => entrySymbol("\\displaystyle\\prod_{i=1}^n{3}")}>
-        <Image alt="product" height={60} src="/svgDrawio/product.drawio.svg" width={80} />
+        <Image alt="product" height={60} src="/svg-drawio/product.drawio.svg" width={80} />
       </Button>
       <Button onClick={() => entrySymbol("\\intop{d}(3)")}>
         <InlineMath>{"\\intop{d}(3)"}</InlineMath>
