@@ -1,8 +1,13 @@
 import { prisma } from "./prisma";
 
 const main = async () => {
-  await prisma.user.createMany({
-    data: [{ name: "alice" }, { name: "bob" }],
+  await prisma.user.upsert({
+    create: {
+      id: 5,
+      name: "Alice",
+    },
+    update: {},
+    where: { id: 5 },
   });
 };
 
