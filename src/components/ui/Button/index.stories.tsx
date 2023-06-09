@@ -11,4 +11,9 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-export const _Button: Story = {};
+export const _Button: Story = {
+  args: {
+    children: "ボタン",
+    color: "blue",
+  },
+};
