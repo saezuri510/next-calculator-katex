@@ -3,7 +3,7 @@ import { memo } from "react";
 import { InlineMath } from "react-katex";
 
 import { KeypadProps } from "../../types/KeypadProps";
-import { Button } from "../ui/Button";
+import { Button } from "../../stories/Button";
 
 export const Func2Keypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JSX.Element => {
   return (

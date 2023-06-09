@@ -5,7 +5,7 @@ import { ImCross } from "react-icons/im";
 import { auth } from "../../lib/firebase";
 import { captureElement } from "../../utils/captureElement";
 import { useAuthContext } from "../contexts/AuthContext";
-import { Button } from "../ui/Button";
+import { Button } from "../../stories/Button";
 import { LinkButton } from "../ui/LinkButton";
 
 type Props = {

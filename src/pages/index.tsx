@@ -13,7 +13,7 @@ import { FuncKeypad } from "../components/keypads/FuncKeypad";
 import { MainKeypad } from "../components/keypads/MainKeypad";
 import "katex/dist/katex.min.css";
 import { SettingsModal } from "../components/modals/SettingsModal";
-import { Button } from "../components/ui/Button";
+import { Button } from "../stories/Button";
 import { AllUsersDocument } from "../graphql/generated/graphql";
 import { useEquation } from "../hooks/useEquation";
 import { useInactiveVisibility } from "../hooks/useInactiveVisibility";

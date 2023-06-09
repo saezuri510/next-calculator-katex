@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 
-import { Button } from "../components/ui/Button";
+import { Button } from "../stories/Button";
 import { Input } from "../components/ui/Input";
 import { LinkButton } from "../components/ui/LinkButton";
 import { auth, provider } from "../lib/firebase";
