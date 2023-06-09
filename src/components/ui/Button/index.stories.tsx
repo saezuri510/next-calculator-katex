@@ -1,15 +1,14 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import { Button } from ".";
 
 type Story = StoryObj<typeof Button>;
 
 const meta: Meta<typeof Button> = {
-  title: "Example/ex",
   component: Button,
   tags: ["autodocs"],
+  title: "UI/Button",
 };
-
-export default meta;
 
 export const _Button: Story = {
   args: {
@@ -17,3 +16,5 @@ export const _Button: Story = {
     color: "blue",
   },
 };
+
+export default meta;
