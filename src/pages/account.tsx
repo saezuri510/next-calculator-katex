@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 import { useAuthContext } from "../components/contexts/AuthContext";
-import { Button } from "../stories/Button";
+import { Button } from "../components/ui/Button";
 import { auth } from "../lib/firebase";
 import { useToastStates } from "../recoil/useToastStates";
 

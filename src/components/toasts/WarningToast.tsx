@@ -1,7 +1,7 @@
 import * as Toast from "@radix-ui/react-toast";
 
 import { useToastStates } from "../../recoil/useToastStates";
-import { Button } from "../../stories/Button";
+import { Button } from "../ui/Button";
 
 export const WarningToast = (): JSX.Element => {
   const { changeIsActive, toastValues } = useToastStates();
