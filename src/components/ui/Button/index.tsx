@@ -1,12 +1,7 @@
-import { ComponentProps, forwardRef, ReactNode } from "react";
+import { ComponentProps, forwardRef } from "react";
 import { tv } from "tailwind-variants";
 
-type Props = Omit<ComponentProps<"button">, "type"> & {
-  children: ReactNode;
-  type?: "button" | "submit";
-};
-
-export const Button = forwardRef<HTMLButtonElement, Props>(
+export const Button = forwardRef<HTMLButtonElement, ComponentProps<"button">>(
   ({ children, className, type = "button", ...rest }, forwardRef): JSX.Element => {
     return (
       <button
