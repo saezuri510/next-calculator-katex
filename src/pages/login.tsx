@@ -109,13 +109,13 @@ const LoginPage: NextPage = () => {
             </div>
             <div className="text-red-500">{firebaseErrorMessage}</div>
             <div className="flex justify-end">
-              <Button color="blue" padding="regular" size="fit" type="submit">
+              <Button className="h-[32px] w-fit bg-blue-500 p-[16px]" type="submit">
                 ログイン
               </Button>
             </div>
           </form>
           <div className="flex items-center justify-center">
-            <Button onClick={handleClick} padding="regular" size="largeFit">
+            <Button className="h-[48px] w-fit p-[16px]" onClick={handleClick}>
               <FcGoogle className="mr-[16px] h-[32px] w-[32px]" />
               googleでログイン
             </Button>

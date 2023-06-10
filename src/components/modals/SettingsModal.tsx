@@ -29,7 +29,7 @@ export const SettingsModal = memo(
     return (
       <Dialog onClose={() => setIsOpen(false)} open={isOpen}>
         <div className="fixed inset-0 bg-black/50" />
-        <Dialog.Panel className="fixed top-[50%] left-[50%] h-[80%] w-[90%] max-w-[350px] translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-[6px] bg-white p-[24px]">
+        <Dialog.Panel className="fixed left-[50%] top-[50%] h-[80%] w-[90%] max-w-[350px] translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-[6px] bg-white p-[24px]">
           <Dialog.Title className="text-[24px] font-bold">設定</Dialog.Title>
           <div className="m-[12px] flex flex-col space-y-[8px]">
             {!user && <LinkButton href="/login">ログイン、新規登録</LinkButton>}
@@ -43,20 +43,29 @@ export const SettingsModal = memo(
             <LinkButton href="/accessibility">アクセシビリティ、表示、言語</LinkButton>
             <LinkButton href="/others">その他</LinkButton>
             {isKeypadActive ? (
-              <Button color="blue" onClick={() => dialogClose(() => setIsKeypadActive(false))}>
+              <Button
+                className="bg-blue-500"
+                onClick={() => dialogClose(() => setIsKeypadActive(false))}
+              >
                 キーパットを非表示
               </Button>
             ) : (
-              <Button color="blue" onClick={() => dialogClose(() => setIsKeypadActive(true))}>
+              <Button
+                className="bg-blue-500"
+                onClick={() => dialogClose(() => setIsKeypadActive(true))}
+              >
                 キーパッドを表示
               </Button>
             )}
-            <Button color="blue" onClick={() => dialogClose(() => captureElement("#capture"))}>
+            <Button
+              className="bg-blue-500"
+              onClick={() => dialogClose(() => captureElement("#capture"))}
+            >
               計算式を保存
             </Button>
           </div>
-          <div className="absolute right-[24px] bottom-[24px]">
-            <Button onClick={() => dialogClose()} size="smallBox">
+          <div className="absolute bottom-[24px] right-[24px]">
+            <Button className="w-[32px]" onClick={() => dialogClose()}>
               <ImCross />
             </Button>
           </div>

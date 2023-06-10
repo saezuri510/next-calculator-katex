@@ -62,17 +62,12 @@ const IndexPage: NextPage = () => {
       {isMenuShown && (
         <div>
           <div className="fixed bottom-[64px] right-[64px]">
-            <Button
-              onClick={() => setIsOpen(true)}
-              padding="regular"
-              radius="circle"
-              size="unspecified"
-            >
+            <Button className="h-auto rounded-full p-[16px]" onClick={() => setIsOpen(true)}>
               <IoSettingsSharp className="h-[48px] w-[48px]" />
             </Button>
           </div>
           <div className="fixed bottom-[120px] right-[56px]">
-            <Button color="gray" onClick={handleClick} padding="small" radius="circle">
+            <Button className="rounded-full bg-gray-300 p-[8px]" onClick={handleClick}>
               <ImCross />
             </Button>
           </div>
@@ -156,7 +151,7 @@ const IndexPage: NextPage = () => {
             </Button>
             <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>DEL</Button>
             <Button onClick={equationControllers.reset}>AC</Button>
-            <Button color="blue" type="submit">
+            <Button className="bg-blue-500" type="submit">
               <IoArrowRedoSharp />
             </Button>
           </div>

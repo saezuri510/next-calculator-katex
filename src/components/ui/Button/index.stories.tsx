@@ -13,7 +13,6 @@ const meta: Meta<typeof Button> = {
 export const _Button: Story = {
   args: {
     children: "ボタン",
-    color: "blue",
   },
 };
 

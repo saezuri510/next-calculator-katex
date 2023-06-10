@@ -16,13 +16,13 @@ export const MainKeypad = memo(
       >
         <Button onClick={() => entrySymbol("x")}>x</Button>
         <Button onClick={() => entrySymbol("y")}>y</Button>
-        <Button color="gray" onClick={() => entryNumber("7")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("7")}>
           7
         </Button>
-        <Button color="gray" onClick={() => entryNumber("8")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("8")}>
           8
         </Button>
-        <Button color="gray" onClick={() => entryNumber("9")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("9")}>
           9
         </Button>
         <Button onClick={() => entrySymbol("\\div")}>÷</Button>
@@ -30,13 +30,13 @@ export const MainKeypad = memo(
         <Button onClick={() => entrySymbol("\\sqrt{2}")}>
           <InlineMath>{"\\sqrt{2}"}</InlineMath>
         </Button>
-        <Button color="gray" onClick={() => entryNumber("4")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("4")}>
           4
         </Button>
-        <Button color="gray" onClick={() => entryNumber("5")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("5")}>
           5
         </Button>
-        <Button color="gray" onClick={() => entryNumber("6")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("6")}>
           6
         </Button>
         <Button onClick={() => entrySymbol("\\times")}>x</Button>
@@ -44,19 +44,19 @@ export const MainKeypad = memo(
           <InlineMath>{"\\times10^{2}"}</InlineMath>
         </Button>
         <Button onClick={() => entrySymbol("\\frac{1}{2}")}>1/2</Button>
-        <Button color="gray" onClick={() => entryNumber("1")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("1")}>
           1
         </Button>
-        <Button color="gray" onClick={() => entryNumber("2")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("2")}>
           2
         </Button>
-        <Button color="gray" onClick={() => entryNumber("3")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("3")}>
           3
         </Button>
         <Button onClick={() => entrySymbol("-")}>-</Button>
         <Button onClick={() => entrySymbol("(")}>(</Button>
         <Button onClick={() => entrySymbol(")")}>)</Button>
-        <Button color="gray" onClick={() => entryNumber("0")}>
+        <Button className="bg-gray-300" onClick={() => entryNumber("0")}>
           0
         </Button>
         <Button onClick={() => entrySymbol(".")}>.</Button>

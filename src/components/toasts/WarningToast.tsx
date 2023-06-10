@@ -20,7 +20,7 @@ export const WarningToast = (): JSX.Element => {
           {toastValues.description}
         </Toast.Description>
         <Toast.Action asChild altText="hide this toast">
-          <Button padding="onlyHorizontal">OK</Button>
+          <Button className="px-[16px]">OK</Button>
         </Toast.Action>
       </Toast.Root>
       <Toast.Viewport className="fixed bottom-[32px] right-[32px]" />

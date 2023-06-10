@@ -6,7 +6,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(({ ...rest }, forwardRe
   return (
     <input
       ref={forwardRef}
-      className="w-[256px] cursor-pointer rounded border border-black"
+      className="w-[256px] cursor-pointer rounded border-black border"
       {...rest}
     />
   );

@@ -38,7 +38,8 @@
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "react-katex": "^3.0.1",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "tailwind-variants": "^0.1.6"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^3.3.1",
