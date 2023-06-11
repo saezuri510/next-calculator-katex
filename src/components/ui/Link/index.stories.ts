@@ -26,13 +26,6 @@ const meta: Meta<typeof Link> = {
   title: "UI/Link",
 };
 
-export const Button: Story = {};
-
-// patternからの指定がstorybookからだとできないのでこうした.
-export const Underline: Story = {
-  args: {
-    className: "text-red-600 underline decoration-blue-400",
-  },
-};
+export const _Link: Story = {};
 
 export default meta;
