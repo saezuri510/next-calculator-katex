@@ -5,6 +5,9 @@ import { Button } from ".";
 type Story = StoryObj<typeof Button>;
 
 const meta: Meta<typeof Button> = {
+  args: {
+    children: "ボタン",
+  },
   argTypes: {
     className: { control: { type: "text" } },
   },
@@ -13,10 +16,6 @@ const meta: Meta<typeof Button> = {
   title: "UI/Button",
 };
 
-export const _Button: Story = {
-  args: {
-    children: "ボタン",
-  },
-};
+export const _Button: Story = {};
 
 export default meta;
