@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
-import { LinkButton } from "../components/ui/LinkButton";
+import { Link } from "../components/ui/Link";
 import { auth, provider } from "../lib/firebase";
 import { useToastStates } from "../recoil/useToastStates";
 
@@ -103,14 +103,14 @@ const SignupPage: NextPage = () => {
           <div className="flex justify-start">
             <div className="flex">
               <div className="flex h-[32px] w-fit items-center justify-center">または</div>
-              <LinkButton href="/login" pattern="underline" size="fit">
+              <Link className="w-fit p-[16px]" href="/login" pattern="underline">
                 ログイン
-              </LinkButton>
+              </Link>
             </div>
             <div className="ml-auto">
-              <LinkButton href="/" size="fit">
+              <Link className="w-fit p-[16px]" href="/">
                 キャンセル
-              </LinkButton>
+              </Link>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { auth } from "../../lib/firebase";
 import { captureElement } from "../../utils/captureElement";
 import { useAuthContext } from "../contexts/AuthContext";
 import { Button } from "../ui/Button";
-import { LinkButton } from "../ui/LinkButton";
+import { Link } from "../ui/Link";
 
 type Props = {
   isKeypadActive: boolean;
@@ -32,16 +32,12 @@ export const SettingsModal = memo(
         <Dialog.Panel className="fixed left-[50%] top-[50%] h-[80%] w-[90%] max-w-[350px] translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-[6px] bg-white p-[24px]">
           <Dialog.Title className="text-[24px] font-bold">設定</Dialog.Title>
           <div className="m-[12px] flex flex-col space-y-[8px]">
-            {!user && <LinkButton href="/login">ログイン、新規登録</LinkButton>}
-            <LinkButton href="/trend">今日の数学</LinkButton>
-            <LinkButton href="/share">シェア、エクスポート</LinkButton>
-            {user && (
-              <LinkButton href="/account">
-                アカウント{auth.currentUser?.displayName}の設定
-              </LinkButton>
-            )}
-            <LinkButton href="/accessibility">アクセシビリティ、表示、言語</LinkButton>
-            <LinkButton href="/others">その他</LinkButton>
+            {!user && <Link href="/login">ログイン、新規登録</Link>}
+            <Link href="/trend">今日の数学</Link>
+            <Link href="/share">シェア、エクスポート</Link>
+            {user && <Link href="/account">アカウント{auth.currentUser?.displayName}の設定</Link>}
+            <Link href="/accessibility">アクセシビリティ、表示、言語</Link>
+            <Link href="/others">その他</Link>
             {isKeypadActive ? (
               <Button
                 className="bg-blue-500"
