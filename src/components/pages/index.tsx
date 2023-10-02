@@ -8,15 +8,15 @@ import { TbMathFunction, TbMathIntegral, TbMathSymbols } from "react-icons/tb";
 import { InlineMath } from "react-katex";
 
 import "katex/dist/katex.min.css";
+import { SettingsModal } from "../../features/root/components/SettingsModal";
+import { Func2Keypad } from "../../features/root/components/keypads/Func2Keypad";
+import { FuncKeypad } from "../../features/root/components/keypads/FuncKeypad";
+import { MainKeypad } from "../../features/root/components/keypads/MainKeypad";
 import { useEquation } from "../../hooks/useEquation";
 import { useInactiveVisibility } from "../../hooks/useInactiveVisibility";
 import { useResponsiveSize } from "../../hooks/useResponsiveSize";
 import { useWindowScroll } from "../../hooks/useWindowScroll";
 import { KeypadCategory } from "../../types/KeypadCategory";
-import { Func2Keypad } from "../keypads/Func2Keypad";
-import { FuncKeypad } from "../keypads/FuncKeypad";
-import { MainKeypad } from "../keypads/MainKeypad";
-import { SettingsModal } from "../modals/SettingsModal";
 import { Button } from "../ui/Button";
 
 export const IndexPage: NextPage = () => {

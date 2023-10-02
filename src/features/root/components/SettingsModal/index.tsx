@@ -2,11 +2,11 @@ import { Dialog } from "@headlessui/react";
 import { Dispatch, memo, SetStateAction } from "react";
 import { ImCross } from "react-icons/im";
 
-import { auth } from "../../lib/firebase";
-import { captureElement } from "../../utils/captureElement";
-import { useAuthContext } from "../contexts/AuthContext";
-import { Button } from "../ui/Button";
-import { Link } from "../ui/Link";
+import { useAuthContext } from "../../../../components/contexts/AuthContext";
+import { Button } from "../../../../components/ui/Button";
+import { Link } from "../../../../components/ui/Link";
+import { auth } from "../../../../lib/firebase";
+import { captureElement } from "../../../../utils/captureElement";
 
 type Props = {
   isKeypadActive: boolean;

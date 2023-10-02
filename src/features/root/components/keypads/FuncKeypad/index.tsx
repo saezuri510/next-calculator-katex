@@ -3,8 +3,8 @@ import Image from "next/image";
 import { memo } from "react";
 import { InlineMath } from "react-katex";
 
-import type { KeypadProps } from "../../types/KeypadProps";
-import { Button } from "../ui/Button";
+import { Button } from "../../../../../components/ui/Button";
+import { KeypadProps } from "../../../../../types/KeypadProps";
 
 export const FuncKeypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JSX.Element => {
   return (

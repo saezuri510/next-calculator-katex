@@ -2,8 +2,8 @@ import clsx from "clsx";
 import { memo } from "react";
 import { InlineMath } from "react-katex";
 
-import { KeypadProps } from "../../types/KeypadProps";
-import { Button } from "../ui/Button";
+import { Button } from "../../../../../components/ui/Button";
+import { KeypadProps } from "../../../../../types/KeypadProps";
 
 export const Func2Keypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JSX.Element => {
   return (
