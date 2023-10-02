@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import clsx from "clsx";
 import type { NextPage } from "next";
 import { useState } from "react";
@@ -14,7 +13,6 @@ import { MainKeypad } from "../components/keypads/MainKeypad";
 import "katex/dist/katex.min.css";
 import { SettingsModal } from "../components/modals/SettingsModal";
 import { Button } from "../components/ui/Button";
-import { AllUsersDocument } from "../graphql/generated/graphql";
 import { useEquation } from "../hooks/useEquation";
 import { useInactiveVisibility } from "../hooks/useInactiveVisibility";
 import { useResponsiveSize } from "../hooks/useResponsiveSize";
@@ -30,7 +28,7 @@ const IndexPage: NextPage = () => {
   const { equation, equationControllers, setEquation } = useEquation("");
   const { ResponsiveSize } = useResponsiveSize();
   // TODO: テストコードなので削除する.
-  const { data, error, loading } = useQuery(AllUsersDocument);
+  // const { data, error, loading } = useQuery(AllUsersDocument);
   const { isElementShown, setIsElementShown } = useWindowScroll(true);
   const { isVisible, resetTimer } = useInactiveVisibility();
 
@@ -49,13 +47,13 @@ const IndexPage: NextPage = () => {
   };
 
   // TODO: テスト用だから削除する.
-  if (error) {
-    return <p>{error.message}</p>;
-  }
+  // if (error) {
+  //   return <p>{error.message}</p>;
+  // }
 
-  if (loading) {
-    return <p>loading...</p>;
-  }
+  // if (loading) {
+  //   return <p>loading...</p>;
+  // }
 
   return (
     <div>
@@ -75,7 +73,7 @@ const IndexPage: NextPage = () => {
       )}
       <div className={clsx({ "h-screen overflow-scroll pb-[256px]": isKeypadActive })}>
         {/* TODO: テストコードなので削除する. */}
-        <ul>
+        {/* <ul>
           {data?.users.map((user, idx) => {
             return (
               <li key={idx}>
@@ -83,7 +81,7 @@ const IndexPage: NextPage = () => {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
         <div id="capture">
           {calculationResults.map((result, idx) => (
             <div key={idx} className="flex">
