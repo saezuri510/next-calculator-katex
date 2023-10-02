@@ -1,11 +1,3 @@
-import { NextPage } from "next";
-
-const TrendPage: NextPage = () => {
-  return (
-    <div>
-      <div>trend</div>
-    </div>
-  );
-};
+import { TrendPage } from "../components/pages/trend";
 
 export default TrendPage;

@@ -1,11 +1,3 @@
-import { NextPage } from "next";
-
-const SharePage: NextPage = () => {
-  return (
-    <div>
-      <div>share</div>
-    </div>
-  );
-};
+import { SharePage } from "../components/pages/share";
 
 export default SharePage;

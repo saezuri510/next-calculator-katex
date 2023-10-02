@@ -1,11 +1,3 @@
-import { NextPage } from "next";
-
-const OthersPage: NextPage = () => {
-  return (
-    <div>
-      <div>others</div>
-    </div>
-  );
-};
+import { OthersPage } from "../components/pages/others";
 
 export default OthersPage;
