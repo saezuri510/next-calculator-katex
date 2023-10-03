@@ -12,11 +12,11 @@ import { SettingsModal } from "../../features/root/components/SettingsModal";
 import { Func2Keypad } from "../../features/root/components/keypads/Func2Keypad";
 import { FuncKeypad } from "../../features/root/components/keypads/FuncKeypad";
 import { MainKeypad } from "../../features/root/components/keypads/MainKeypad";
-import { useEquation } from "../../hooks/useEquation";
+import { useEquation } from "../../features/root/hooks/useEquation";
+import { KeypadCategory } from "../../features/root/types/KeypadCategory";
 import { useInactiveVisibility } from "../../hooks/useInactiveVisibility";
 import { useResponsiveSize } from "../../hooks/useResponsiveSize";
 import { useWindowScroll } from "../../hooks/useWindowScroll";
-import { KeypadCategory } from "../../types/KeypadCategory";
 import { Button } from "../ui/Button";
 
 export const IndexPage: NextPage = () => {

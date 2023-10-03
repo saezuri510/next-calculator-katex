@@ -6,7 +6,7 @@ import { useAuthContext } from "../../../../components/contexts/AuthContext";
 import { Button } from "../../../../components/ui/Button";
 import { Link } from "../../../../components/ui/Link";
 import { auth } from "../../../../lib/firebase";
-import { captureElement } from "../../../../utils/captureElement";
+import { captureElement } from "../../utils/captureElement";
 
 type Props = {
   isKeypadActive: boolean;
