@@ -1,14 +1,13 @@
 import { ComponentProps, forwardRef } from "react";
-import { tv } from "tailwind-variants";
+
+import { twcx } from "../../../utils/twcx";
 
 export const Input = forwardRef<HTMLInputElement, ComponentProps<"input">>(
   ({ className, ...rest }, forwardRef): JSX.Element => {
     return (
       <input
         ref={forwardRef}
-        className={tv({ base: "w-[256px] cursor-pointer rounded border border-black" })({
-          className: className,
-        })}
+        className={twcx("w-[256px] cursor-pointer rounded border border-black", className)}
         {...rest}
       />
     );
