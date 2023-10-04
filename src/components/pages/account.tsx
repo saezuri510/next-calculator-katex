@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { auth } from "../../lib/firebase";
 import { useToastStates } from "../../recoil/useToastStates";
 import { useAuthContext } from "../contexts/AuthContext";
-import { Button } from "../ui/Button";
+import { SimpleButton } from "../ui/domain/SimpleButton";
 
 export const AccountPage: NextPage = () => {
   const { user } = useAuthContext();
@@ -23,7 +23,7 @@ export const AccountPage: NextPage = () => {
 
   return user ? (
     <div>
-      <Button onClick={handleClick}>ログアウト</Button>
+      <SimpleButton onClick={handleClick}>ログアウト</SimpleButton>
     </div>
   ) : (
     <div>

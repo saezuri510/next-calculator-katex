@@ -17,7 +17,7 @@ import { KeypadCategory } from "../../features/root/types/KeypadCategory";
 import { useInactiveVisibility } from "../../hooks/useInactiveVisibility";
 import { useResponsiveSize } from "../../hooks/useResponsiveSize";
 import { useWindowScroll } from "../../hooks/useWindowScroll";
-import { Button } from "../ui/Button";
+import { SimpleButton } from "../ui/domain/SimpleButton";
 
 export const IndexPage: NextPage = () => {
   const [calculationResults, setCalculationResults] = useState<string[]>([]);
@@ -60,14 +60,14 @@ export const IndexPage: NextPage = () => {
       {isMenuShown && (
         <div>
           <div className="fixed bottom-[64px] right-[64px]">
-            <Button className="h-auto rounded-full p-[16px]" onClick={() => setIsOpen(true)}>
+            <SimpleButton className="h-auto rounded-full p-[16px]" onClick={() => setIsOpen(true)}>
               <IoSettingsSharp className="h-[48px] w-[48px]" />
-            </Button>
+            </SimpleButton>
           </div>
           <div className="fixed bottom-[120px] right-[56px]">
-            <Button className="rounded-full bg-gray-300 p-[8px]" onClick={handleClick}>
+            <SimpleButton className="rounded-full bg-gray-300 p-[8px]" onClick={handleClick}>
               <ImCross />
-            </Button>
+            </SimpleButton>
           </div>
         </div>
       )}
@@ -112,46 +112,48 @@ export const IndexPage: NextPage = () => {
                 switch (currentKeypad) {
                   case "main":
                     return (
-                      <Button onClick={() => setCurrentKeypad("func")}>
+                      <SimpleButton onClick={() => setCurrentKeypad("func")}>
                         <TbMathFunction />
-                      </Button>
+                      </SimpleButton>
                     );
                   case "func":
                     return (
-                      <Button onClick={() => setCurrentKeypad("func2")}>
+                      <SimpleButton onClick={() => setCurrentKeypad("func2")}>
                         <TbMathIntegral />
-                      </Button>
+                      </SimpleButton>
                     );
                   case "func2":
                     return (
-                      <Button onClick={() => setCurrentKeypad("main")}>
+                      <SimpleButton onClick={() => setCurrentKeypad("main")}>
                         <TbMathSymbols />
-                      </Button>
+                      </SimpleButton>
                     );
                 }
               } else {
                 return currentKeypad !== "func2" ? (
-                  <Button onClick={() => setCurrentKeypad("func2")}>
+                  <SimpleButton onClick={() => setCurrentKeypad("func2")}>
                     <TbMathIntegral />
-                  </Button>
+                  </SimpleButton>
                 ) : (
-                  <Button onClick={() => setCurrentKeypad("func")}>
+                  <SimpleButton onClick={() => setCurrentKeypad("func")}>
                     <TbMathFunction />
-                  </Button>
+                  </SimpleButton>
                 );
               }
             })()}
-            <Button onClick={() => setCalculationResults([])}>
+            <SimpleButton onClick={() => setCalculationResults([])}>
               <FaEraser />
-            </Button>
-            <Button onClick={() => setIsOpen(true)}>
+            </SimpleButton>
+            <SimpleButton onClick={() => setIsOpen(true)}>
               <IoSettingsSharp />
-            </Button>
-            <Button onClick={() => setEquation((prev) => prev.slice(0, -1))}>DEL</Button>
-            <Button onClick={equationControllers.reset}>AC</Button>
-            <Button className="bg-blue-500" type="submit">
+            </SimpleButton>
+            <SimpleButton onClick={() => setEquation((prev) => prev.slice(0, -1))}>
+              DEL
+            </SimpleButton>
+            <SimpleButton onClick={equationControllers.reset}>AC</SimpleButton>
+            <SimpleButton className="bg-blue-500" type="submit">
               <IoArrowRedoSharp />
-            </Button>
+            </SimpleButton>
           </div>
         </form>
       )}

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { memo } from "react";
 import { InlineMath } from "react-katex";
 
-import { Button } from "../../../../../components/ui/Button";
+import { SimpleButton } from "../../../../../components/ui/domain/SimpleButton";
 import { KeypadProps } from "../../../types/KeypadProps";
 
 export const FuncKeypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JSX.Element => {
@@ -15,70 +15,70 @@ export const FuncKeypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JS
         "hidden sm:grid": currentKeypad === "main",
       })}
     >
-      <Button onClick={() => entrySymbol("<")}>{"<"}</Button>
-      <Button onClick={() => entrySymbol("\\leqq")}>
+      <SimpleButton onClick={() => entrySymbol("<")}>{"<"}</SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\leqq")}>
         <InlineMath>\leqq</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol(">")}>{">"}</Button>
-      <Button onClick={() => entrySymbol("\\geqq")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol(">")}>{">"}</SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\geqq")}>
         <InlineMath>\geqq</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\log_2{3}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\log_2{3}")}>
         <InlineMath>{"\\log_2{3}"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\pi")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\pi")}>
         <InlineMath>\pi</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\theta")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\theta")}>
         <InlineMath>\theta</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("30^\\circ")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("30^\\circ")}>
         <InlineMath>30^\circ</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("⌊⌋")}>⌊⌋</Button>
-      <Button onClick={() => entrySymbol("\\displaystyle\\sum_{i=1}^n{3}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("⌊⌋")}>⌊⌋</SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\displaystyle\\sum_{i=1}^n{3}")}>
         <Image alt="sigma" height={60} src="/svg-drawio/sigma.drawio.svg" width={80} />
-      </Button>
-      <Button onClick={() => entrySymbol("\\displaystyle\\prod_{i=1}^n{3}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\displaystyle\\prod_{i=1}^n{3}")}>
         <Image alt="product" height={60} src="/svg-drawio/product.drawio.svg" width={80} />
-      </Button>
-      <Button onClick={() => entrySymbol("\\intop{d}(3)")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\intop{d}(3)")}>
         <InlineMath>{"\\intop{d}(3)"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\lim\\limits_{3\\to5}(4)")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\lim\\limits_{3\\to5}(4)")}>
         <InlineMath>{"\\lim\\limits_{3\\to5}(4)"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\infty")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\infty")}>
         <InlineMath>{"\\infty"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("{}_1 P_{1}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("{}_1 P_{1}")}>
         <InlineMath>{"{}_1 P_{1}"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("{}_1 C_{2}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("{}_1 C_{2}")}>
         <InlineMath>{"{}_1 C_{2}"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\Harr")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\Harr")}>
         <InlineMath>\Harr</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\sqrt[2]{3}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\sqrt[2]{3}")}>
         <InlineMath>{"\\sqrt[2]{3}"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("≒")}>≒</Button>
-      <Button onClick={() => entrySymbol("\\pm")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("≒")}>≒</SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\pm")}>
         <InlineMath>\pm</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\neq")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\neq")}>
         <InlineMath>\neq</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\overline{3}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\overline{3}")}>
         <InlineMath>{"\\overline{3}"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\therefore")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\therefore")}>
         <InlineMath>\therefore</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\equiv")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\equiv")}>
         <InlineMath>\equiv</InlineMath>
-      </Button>
+      </SimpleButton>
     </div>
   );
 });

@@ -1,19 +1,19 @@
-import NextLink from "next/link";
-import { ComponentProps, forwardRef } from "react";
+import { forwardRef } from "react";
 
-import { twcx } from "../../../utils/twcx";
+import { twcx } from "../../../../utils/twcx";
+import { BaseLink, BaseLinkProps } from "../../base/BaseLink";
 
-type Props = ComponentProps<typeof NextLink> & {
+type Props = BaseLinkProps & {
   pattern?: "button" | "underline";
 };
 
-export const Link = forwardRef<HTMLAnchorElement, Props>(
+export const FormLink = forwardRef<HTMLAnchorElement, Props>(
   ({ children, className, pattern = "button", ...rest }, forwardRef): JSX.Element => {
     return (
-      <NextLink
+      <BaseLink
         ref={forwardRef}
         className={twcx(
-          "flex h-[32px] cursor-pointer items-center justify-center font-medium",
+          "h-[32px] font-medium",
           {
             "rounded border": pattern === "button",
             "text-red-600 underline decoration-blue-400": pattern === "underline",
@@ -23,9 +23,9 @@ export const Link = forwardRef<HTMLAnchorElement, Props>(
         {...rest}
       >
         {children}
-      </NextLink>
+      </BaseLink>
     );
   },
 );
 
-Link.displayName = "Link";
+FormLink.displayName = "FormLink";

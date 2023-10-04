@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Link } from ".";
+import { FormLink } from ".";
 
-type Story = StoryObj<typeof Link>;
+type Story = StoryObj<typeof FormLink>;
 
-const meta: Meta<typeof Link> = {
+const meta: Meta<typeof FormLink> = {
   args: {
     children: "test",
     href: "/test",
@@ -21,11 +21,11 @@ const meta: Meta<typeof Link> = {
       },
     },
   },
-  component: Link,
+  component: FormLink,
   tags: ["autodocs"],
-  title: "UI/Link",
+  title: "UI/FormLink",
 };
 
-export const _Link: Story = {};
+export const _FormLink: Story = {};
 
 export default meta;

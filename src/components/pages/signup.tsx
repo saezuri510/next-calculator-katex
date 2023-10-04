@@ -7,9 +7,9 @@ import { FcGoogle } from "react-icons/fc";
 
 import { auth, provider } from "../../lib/firebase";
 import { useToastStates } from "../../recoil/useToastStates";
-import { Button } from "../ui/Button";
-import { Input } from "../ui/Input";
-import { Link } from "../ui/Link";
+import { FormInput } from "../ui/domain/FormInput";
+import { FormLink } from "../ui/domain/FormLink";
+import { SimpleButton } from "../ui/domain/SimpleButton";
 
 type FormValues = {
   email: string;
@@ -52,7 +52,7 @@ export const SignupPage: NextPage = () => {
               <label className="w-fit cursor-pointer" htmlFor="email">
                 メールアドレス
               </label>
-              <Input
+              <FormInput
                 {...register("email", {
                   pattern: {
                     message: "メールアドレスの形式が間違っています",
@@ -72,7 +72,7 @@ export const SignupPage: NextPage = () => {
               <label className="w-fit cursor-pointer" htmlFor="password">
                 パスワード
               </label>
-              <Input
+              <FormInput
                 {...register("password", {
                   minLength: {
                     message: "パスワードは8文字以上必要です",
@@ -89,28 +89,28 @@ export const SignupPage: NextPage = () => {
               />
             </div>
             <div className="flex justify-end">
-              <Button className="h-[32px] w-fit bg-blue-500 p-[16px]" type="submit">
+              <SimpleButton className="h-[32px] w-fit bg-blue-500 p-[16px]" type="submit">
                 新規登録
-              </Button>
+              </SimpleButton>
             </div>
           </form>
           <div className="flex items-center justify-center">
-            <Button className="h-[48px] w-fit p-[16px]" onClick={handleClick}>
+            <SimpleButton className="h-[48px] w-fit p-[16px]" onClick={handleClick}>
               <FcGoogle className="mr-[16px] h-[32px] w-[32px]" />
               googleでサインイン
-            </Button>
+            </SimpleButton>
           </div>
           <div className="flex justify-start">
             <div className="flex">
               <div className="flex h-[32px] w-fit items-center justify-center">または</div>
-              <Link className="w-fit p-[16px]" href="/login" pattern="underline">
+              <FormLink className="w-fit p-[16px]" href="/login" pattern="underline">
                 ログイン
-              </Link>
+              </FormLink>
             </div>
             <div className="ml-auto">
-              <Link className="w-fit p-[16px]" href="/">
+              <FormLink className="w-fit p-[16px]" href="/">
                 キャンセル
-              </Link>
+              </FormLink>
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { memo } from "react";
 import { InlineMath } from "react-katex";
 
-import { Button } from "../../../../../components/ui/Button";
+import { SimpleButton } from "../../../../../components/ui/domain/SimpleButton";
 import { KeypadProps } from "../../../types/KeypadProps";
 
 export const Func2Keypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): JSX.Element => {
@@ -13,78 +13,78 @@ export const Func2Keypad = memo(({ currentKeypad, entrySymbol }: KeypadProps): J
         currentKeypad === "func2" ? "grid" : "hidden",
       )}
     >
-      <Button onClick={() => entrySymbol("\\in")}>
+      <SimpleButton onClick={() => entrySymbol("\\in")}>
         <InlineMath>\in</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\notin")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\notin")}>
         <InlineMath>\notin</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\subset")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\subset")}>
         <InlineMath>\subset</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\ni")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\ni")}>
         <InlineMath>\ni</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\notni")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\notni")}>
         <InlineMath>\notni</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\supset")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\supset")}>
         <InlineMath>\supset</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\cap")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\cap")}>
         <InlineMath>\cap</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\cup")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\cup")}>
         <InlineMath>\cup</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\varnothing")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\varnothing")}>
         <InlineMath>\varnothing</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\because")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\because")}>
         <InlineMath>\because</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\iff")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\iff")}>
         <InlineMath>\iff</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\square")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\square")}>
         <InlineMath>\square</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\triangle")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\triangle")}>
         <InlineMath>\triangle</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\angle")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\angle")}>
         <InlineMath>\angle</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\gets")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\gets")}>
         <InlineMath>\gets</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\to")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\to")}>
         <InlineMath>\to</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\implies")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\implies")}>
         <InlineMath>\implies</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\bot")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\bot")}>
         <InlineMath>\bot</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\overline{AB}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\overline{AB}")}>
         <InlineMath>{"\\overline{AB}"}</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\blacksquare")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\blacksquare")}>
         <InlineMath>\blacksquare</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\N")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\N")}>
         <InlineMath>\N</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\Z")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\Z")}>
         <InlineMath>\Z</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\R")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\R")}>
         <InlineMath>\R</InlineMath>
-      </Button>
-      <Button onClick={() => entrySymbol("\\overrightarrow{A}")}>
+      </SimpleButton>
+      <SimpleButton onClick={() => entrySymbol("\\overrightarrow{A}")}>
         <InlineMath>{"\\overrightarrow{A}"}</InlineMath>
-      </Button>
+      </SimpleButton>
     </div>
   );
 });

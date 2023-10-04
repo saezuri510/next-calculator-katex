@@ -1,7 +1,7 @@
 import * as Toast from "@radix-ui/react-toast";
 
 import { useToastStates } from "../../recoil/useToastStates";
-import { Button } from "../ui/Button";
+import { SimpleButton } from "../ui/domain/SimpleButton";
 
 export const WarningToast = (): JSX.Element => {
   const { changeIsActive, toastValues } = useToastStates();
@@ -20,7 +20,7 @@ export const WarningToast = (): JSX.Element => {
           {toastValues.description}
         </Toast.Description>
         <Toast.Action asChild altText="hide this toast">
-          <Button className="px-[16px]">OK</Button>
+          <SimpleButton className="px-[16px]">OK</SimpleButton>
         </Toast.Action>
       </Toast.Root>
       <Toast.Viewport className="fixed bottom-[32px] right-[32px]" />
